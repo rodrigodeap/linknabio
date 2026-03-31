@@ -17,21 +17,16 @@
                        'premium-dark': '#0B1120',
                        'premium-navy': '#0F1A2F',
                        'gold-accent': '#C9A03D',
-                       'stone-soft': '#F5F7FA',
                    },
                    fontFamily: {
-                       'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-                   },
-                   boxShadow: {
-                       'elevated': '0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.02)',
-                       'card-hover': '0 30px 45px -15px rgba(0, 0, 0, 0.2), 0 8px 20px -8px rgba(0, 0, 0, 0.1)',
+                       'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
                    },
                    animation: {
                        'fade-up': 'fadeUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards',
                    },
                    keyframes: {
                        fadeUp: {
-                           '0%': { opacity: '0', transform: 'translateY(12px)' },
+                           '0%': { opacity: '0', transform: 'translateY(15px)' },
                            '100%': { opacity: '1', transform: 'translateY(0)' },
                        },
                    },
@@ -47,46 +42,52 @@
    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
    
    <style>
-       /* smooth scroll + refined card styles */
-       html {
-           scroll-behavior: smooth;
+       * {
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
        }
        
        body {
-           background: linear-gradient(135deg, #F9FAFE 0%, #F5F7FC 100%);
+           background: linear-gradient(135deg, #F8FAFE 0%, #F3F6FC 100%);
+           font-family: 'Inter', system-ui, -apple-system, sans-serif;
            -webkit-font-smoothing: antialiased;
        }
        
-       /* Premium card design */
+       /* Premium Card Design - Garantia de exibição */
        .card-premium {
            background: #FFFFFF;
            border-radius: 1.75rem;
-           transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-           box-shadow: 0 8px 28px -8px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.02);
+           transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+           box-shadow: 0 8px 28px -8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.02);
            border: 1px solid rgba(0, 0, 0, 0.04);
            display: flex;
            flex-direction: column;
            height: 100%;
-           backdrop-filter: blur(0px);
            overflow: hidden;
+           backdrop-filter: blur(0px);
        }
        
        .card-premium:hover {
            transform: translateY(-6px);
-           box-shadow: 0 28px 40px -16px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.05);
+           box-shadow: 0 28px 40px -16px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
            border-color: rgba(201, 160, 61, 0.25);
        }
        
-       /* Image container with elegant rounding and overlay effect */
-       .card-image-wrapper {
+       /* Image Container - Otimizado para PNG */
+       .card-image-container {
            position: relative;
            overflow: hidden;
-           background: linear-gradient(135deg, #F0F3F9 0%, #E8EDF5 100%);
+           background: linear-gradient(135deg, #F4F7FC 0%, #EBF0F7 100%);
            border-radius: 1.5rem;
            margin: 1.25rem 1.25rem 0 1.25rem;
+           min-height: 200px;
+           display: flex;
+           align-items: center;
+           justify-content: center;
        }
        
-       .card-image-wrapper img {
+       .card-image-container img {
            width: 100%;
            height: auto;
            display: block;
@@ -96,32 +97,53 @@
            border-radius: 1.25rem;
        }
        
-       .card-premium:hover .card-image-wrapper img {
+       .card-premium:hover .card-image-container img {
            transform: scale(1.03);
        }
        
-       /* Modern badge styling */
+       /* Fallback visual elegante para imagens */
+       .image-fallback {
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           justify-content: center;
+           gap: 0.75rem;
+           padding: 2rem;
+           text-align: center;
+           background: linear-gradient(135deg, #EFF3FA, #E8EDF5);
+           width: 100%;
+           height: 100%;
+           min-height: 200px;
+           border-radius: 1.25rem;
+       }
+       
+       .image-fallback i {
+           opacity: 0.6;
+       }
+       
+       /* Badge Moderno */
        .badge-modern {
            display: inline-flex;
            align-items: center;
            gap: 0.5rem;
-           background: rgba(255, 255, 255, 0.92);
+           background: rgba(255, 255, 255, 0.96);
            backdrop-filter: blur(4px);
-           border: 0.5px solid rgba(0, 0, 0, 0.06);
+           border: 1px solid rgba(0, 0, 0, 0.05);
            padding: 0.4rem 1rem;
            border-radius: 2rem;
            font-size: 0.7rem;
            font-weight: 600;
-           letter-spacing: -0.01em;
+           letter-spacing: -0.2px;
            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
        }
        
-       /* Primary button style */
+       /* Botões */
        .btn-primary {
            background: linear-gradient(135deg, #0F1A2F 0%, #14213D 100%);
            transition: all 0.3s ease;
            border: none;
            box-shadow: 0 2px 8px rgba(15, 26, 47, 0.12);
+           cursor: pointer;
        }
        
        .btn-primary:hover {
@@ -145,7 +167,7 @@
            box-shadow: 0 8px 20px -10px rgba(31, 139, 76, 0.35);
        }
        
-       /* Section spacing harmony */
+       /* Espaçamentos */
        .section-spacer {
            margin-bottom: 5rem;
        }
@@ -154,12 +176,11 @@
            .section-spacer {
                margin-bottom: 3.5rem;
            }
-           .card-image-wrapper {
+           .card-image-container {
                margin: 1rem 1rem 0 1rem;
            }
        }
        
-       /* Container harmony */
        .container-harmony {
            max-width: 1280px;
            margin-left: auto;
@@ -175,7 +196,6 @@
            }
        }
        
-       /* Section header style */
        .section-header {
            position: relative;
        }
@@ -191,22 +211,21 @@
            border-radius: 3px;
        }
        
-       /* Animation delays */
-       .delay-100 { animation-delay: 0.1s; }
-       .delay-200 { animation-delay: 0.2s; }
-       .delay-300 { animation-delay: 0.3s; }
+       .animate-delay-1 { animation-delay: 0.05s; }
+       .animate-delay-2 { animation-delay: 0.15s; }
+       .animate-delay-3 { animation-delay: 0.25s; }
    </style>
 </head>
 <body>
 
-    <!-- Premium Header -->
-    <header class="pt-12 pb-8 md:pt-16 md:pb-10 bg-white/50 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-10">
+    <!-- Header Premium -->
+    <header class="pt-12 pb-8 md:pt-14 md:pb-10 bg-white/60 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-20">
         <div class="container-harmony">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                 <div class="space-y-2">
                     <div class="flex items-center gap-2">
                         <div class="w-1.5 h-8 bg-gradient-to-b from-gold-accent to-amber-600 rounded-full"></div>
-                        <h1 class="text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-premium-dark to-premium-navy bg-clip-text text-transparent">Estratégia Patrimonial</h1>
+                        <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-premium-dark">Estratégia Patrimonial</h1>
                     </div>
                     <p class="text-gray-500 max-w-xl text-base leading-relaxed">Soluções criteriosas para construção, proteção e perpetuação de capital com visão de longo prazo.</p>
                 </div>
@@ -227,7 +246,7 @@
     <main class="py-8 md:py-12">
         <div class="container-harmony">
             
-            <!-- Section 1: Geração de Capital -->
+            <!-- ================= SECTION 1: GERAÇÃO DE CAPITAL (3 CARDS FIXOS) ================= -->
             <section class="section-spacer">
                 <div class="flex flex-wrap justify-between items-end gap-4 mb-10">
                     <div class="section-header">
@@ -244,21 +263,24 @@
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
-                    <!-- Card 1: Código do Tráfego Real -->
-                    <div class="animate-[fade-up_0.5s_ease-out] opacity-0 [animation-fill-mode:forwards] delay-100">
+                    
+                    <!-- Card 1: Código do Tráfego Real (PNG) -->
+                    <div class="opacity-0 animate-[fade-up_0.5s_ease-out_forwards] animate-delay-1">
                         <div class="card-premium">
-                            <div class="card-image-wrapper">
-                                <img src="images/CAPA_TRAFEGO_REAL.png" alt="Código do Tráfego Real - Método de otimização de tráfego pago" onerror="this.style.display='none'; this.parentElement.classList.add('bg-gradient');">
+                            <div class="card-image-container">
+                                <img src="images/CAPA_TRAFEGO_REAL.png" 
+                                     alt="Código do Tráfego Real - Método de otimização de tráfego pago"
+                                     onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-fallback\'><i data-lucide=\'trending-up\' class=\'w-12 h-12 text-gray-400\'></i><span class=\'text-sm text-gray-500 font-medium\'>Código do Tráfego Real</span><span class=\'text-xs text-gray-400\'>Imagem ilustrativa</span></div>'; if(typeof lucide!=='undefined') lucide.createIcons();">
                             </div>
                             <div class="p-6 flex flex-col flex-grow gap-3">
                                 <div class="flex justify-between items-start">
-                                    <span class="badge-modern text-emerald-700 bg-emerald-50/90">
+                                    <span class="badge-modern text-emerald-700" style="background: #ecfdf5;">
                                         <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
                                         Alto ROI
                                     </span>
                                 </div>
                                 <h3 class="text-xl font-bold tracking-tight text-premium-dark mt-1">Código do Tráfego Real</h3>
-                                <p class="text-gray-500 text-sm leading-relaxed flex-grow">Método científico para otimização de tráfego pago com ROI mensurável. Elimine desperdícios e escale campanhas com previsibilidade e resultados consistentes.</p>
+                                <p class="text-gray-500 text-sm leading-relaxed flex-grow">Pare de desperdiçar dinheiro com campanhas mal estruturadas. Método científico para otimização de tráfego pago com ROI mensurável e resultados escaláveis.</p>
                                 <a href="https://kiwify.app/oYmqCtv" target="_blank" rel="noopener noreferrer" class="btn-primary mt-4 w-full text-white font-semibold py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all group">
                                     <span>Acessar agora</span>
                                     <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
@@ -267,21 +289,23 @@
                         </div>
                     </div>
                     
-                    <!-- Card 2: Sistema Milionário -->
-                    <div class="animate-[fade-up_0.5s_ease-out] opacity-0 [animation-fill-mode:forwards] delay-200">
+                    <!-- Card 2: Sistema Milionário (JPG - mas compatível) -->
+                    <div class="opacity-0 animate-[fade-up_0.5s_ease-out_forwards] animate-delay-2">
                         <div class="card-premium">
-                            <div class="card-image-wrapper">
-                                <img src="images/sistemamilionario.png" alt="Sistema Milionário - Roadmap completo para negócio digital" onerror="this.style.display='none';">
+                            <div class="card-image-container">
+                                <img src="images/sistemamilionario.jpg" 
+                                     alt="Sistema Milionário - Roadmap completo para negócio digital"
+                                     onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-fallback\'><i data-lucide=\'layers\' class=\'w-12 h-12 text-gray-400\'></i><span class=\'text-sm text-gray-500 font-medium\'>Sistema Milionário</span><span class=\'text-xs text-gray-400\'>Estrutura completa</span></div>'; if(typeof lucide!=='undefined') lucide.createIcons();">
                             </div>
                             <div class="p-6 flex flex-col flex-grow gap-3">
                                 <div class="flex justify-between items-start">
-                                    <span class="badge-modern text-blue-700 bg-blue-50/90">
+                                    <span class="badge-modern text-blue-700" style="background: #eff6ff;">
                                         <i data-lucide="compass" class="w-3.5 h-3.5"></i>
-                                        Roadmap completo
+                                        Estrutura Completa
                                     </span>
                                 </div>
                                 <h3 class="text-xl font-bold tracking-tight text-premium-dark mt-1">Sistema Milionário</h3>
-                                <p class="text-gray-500 text-sm leading-relaxed flex-grow">Estrutura completa para iniciar no digital do zero. Etapas claras, estratégias de monetização e construção de autoridade para empreendedores iniciantes.</p>
+                                <p class="text-gray-500 text-sm leading-relaxed flex-grow">Estrutura para iniciar no digital do zero. Roadmap completo com etapas claras para construir um negócio digital do absoluto zero, com estratégias validadas.</p>
                                 <a href="https://kiwify.app/xOLgXNT?afid=j1q39KnQ" target="_blank" rel="noopener noreferrer" class="btn-primary mt-4 w-full text-white font-semibold py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all group">
                                     <span>Ver método</span>
                                     <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
@@ -290,21 +314,23 @@
                         </div>
                     </div>
                     
-                    <!-- Card 3: StoryCash -->
-                    <div class="animate-[fade-up_0.5s_ease-out] opacity-0 [animation-fill-mode:forwards] delay-300">
+                    <!-- Card 3: StoryCash (PNG) -->
+                    <div class="opacity-0 animate-[fade-up_0.5s_ease-out_forwards] animate-delay-3">
                         <div class="card-premium">
-                            <div class="card-image-wrapper">
-                                <img src="images/storycash.png" alt="StoryCash - Monetização inteligente de redes sociais" onerror="this.style.display='none';">
+                            <div class="card-image-container">
+                                <img src="images/storycash.png" 
+                                     alt="StoryCash - Monetização inteligente de redes sociais"
+                                     onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-fallback\'><i data-lucide=\'message-circle\' class=\'w-12 h-12 text-gray-400\'></i><span class=\'text-sm text-gray-500 font-medium\'>StoryCash</span><span class=\'text-xs text-gray-400\'>Storytelling estratégico</span></div>'; if(typeof lucide!=='undefined') lucide.createIcons();">
                             </div>
                             <div class="p-6 flex flex-col flex-grow gap-3">
                                 <div class="flex justify-between items-start">
-                                    <span class="badge-modern text-purple-700 bg-purple-50/90">
+                                    <span class="badge-modern text-purple-700" style="background: #faf5ff;">
                                         <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
-                                        Storytelling estratégico
+                                        Storytelling
                                     </span>
                                 </div>
                                 <h3 class="text-xl font-bold tracking-tight text-premium-dark mt-1">StoryCash</h3>
-                                <p class="text-gray-500 text-sm leading-relaxed flex-grow">Monetização inteligente de redes sociais através de storytelling e funis otimizados. Transforme audiência em receita estratégica com narrativa persuasiva.</p>
+                                <p class="text-gray-500 text-sm leading-relaxed flex-grow">Transforme audiência em receita estratégica. Monetização inteligente de redes sociais através de storytelling e funis otimizados para resultados consistentes.</p>
                                 <a href="https://kiwify.app/m5OA3mN?afid=Ov8kxfbw" target="_blank" rel="noopener noreferrer" class="btn-primary mt-4 w-full text-white font-semibold py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all group">
                                     <span>Conhecer</span>
                                     <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
@@ -315,7 +341,7 @@
                 </div>
             </section>
             
-            <!-- Section 2: Proteção Patrimonial -->
+            <!-- ================= SECTION 2: PROTEÇÃO PATRIMONIAL ================= -->
             <section class="section-spacer">
                 <div class="flex flex-wrap justify-between items-end gap-4 mb-10">
                     <div class="section-header">
@@ -331,21 +357,24 @@
                     </div>
                 </div>
                 <div class="max-w-3xl mx-auto w-full">
-                    <div class="card-premium hover:scale-[1.01] transition-all">
-                        <div class="card-image-wrapper mx-5 mt-5">
-                            <img src="images/vistoriadorpro.png" alt="Vistoriador PRO - Formação técnica para vistoria imobiliária" class="rounded-2xl" onerror="this.style.display='none';">
+                    <div class="card-premium hover:scale-[1.01] transition-all duration-300">
+                        <div class="card-image-container mx-5 mt-5">
+                            <img src="images/vistoriadorpro.png" 
+                                 alt="Vistoriador PRO - Formação técnica para vistoria imobiliária"
+                                 class="rounded-2xl"
+                                 onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-fallback\'><i data-lucide=\'clipboard-check\' class=\'w-12 h-12 text-gray-400\'></i><span class=\'text-sm text-gray-500 font-medium\'>Vistoriador PRO</span><span class=\'text-xs text-gray-400\'>Formação técnica completa</span></div>'; if(typeof lucide!=='undefined') lucide.createIcons();">
                         </div>
                         <div class="p-7 flex flex-col gap-4">
                             <div class="flex items-center gap-2">
-                                <span class="badge-modern text-amber-700 bg-amber-50/90">
+                                <span class="badge-modern text-amber-700" style="background: #fffbeb;">
                                     <i data-lucide="home" class="w-3.5 h-3.5"></i>
-                                    Certificação técnica
+                                    Especializado
                                 </span>
                             </div>
                             <h3 class="text-2xl font-bold tracking-tight text-premium-dark">Vistoriador PRO</h3>
-                            <p class="text-gray-500 text-base leading-relaxed">Formação técnica completa para proteger e valorizar patrimônio imobiliário. Aprenda a identificar, avaliar e documentar condições de imóveis com precisão técnica para evitar prejuízos e maximizar investimentos através de laudos de alta credibilidade.</p>
+                            <p class="text-gray-500 text-base leading-relaxed">Formação técnica para proteger e valorizar patrimônio imobiliário. Aprenda a identificar, avaliar e documentar condições de imóveis com precisão técnica para evitar prejuízos e maximizar investimentos através de laudos de alta credibilidade.</p>
                             <a href="https://kiwify.app/DoUTdmx" target="_blank" rel="noopener noreferrer" class="btn-primary mt-2 w-full text-white font-semibold py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all">
-                                <span>Acessar formação completa</span>
+                                <span>Acessar formação</span>
                                 <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </a>
                         </div>
@@ -353,7 +382,7 @@
                 </div>
             </section>
             
-            <!-- Section 3: Consolidação Patrimonial -->
+            <!-- ================= SECTION 3: CONSOLIDAÇÃO PATRIMONIAL ================= -->
             <section class="section-spacer">
                 <div class="flex flex-wrap justify-between items-end gap-4 mb-10">
                     <div class="section-header">
@@ -361,31 +390,34 @@
                             <div class="h-8 w-1 rounded-full bg-sky-600"></div>
                             <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-premium-dark">Consolidação Patrimonial</h2>
                         </div>
-                        <p class="text-gray-500 max-w-2xl text-[0.95rem]">Curadoria de ativos de alto padrão e assessoria exclusiva para crescimento patrimonial consistente.</p>
+                        <p class="text-gray-500 max-w-2xl text-[0.95rem]">Estratégias de alto padrão para consolidação e crescimento de patrimônio através de imóveis premium.</p>
                     </div>
                     <div class="inline-flex items-center gap-2 px-5 py-2 bg-sky-50 rounded-full border border-sky-100">
                         <i data-lucide="gem" class="w-3.5 h-3.5 text-sky-600"></i>
-                        <span class="text-xs font-semibold text-sky-700">Atendimento exclusivo</span>
+                        <span class="text-xs font-semibold text-sky-700">Alto Padrão</span>
                     </div>
                 </div>
                 <div class="max-w-3xl mx-auto w-full">
                     <div class="card-premium border-t-2 border-t-gold-accent">
-                        <div class="card-image-wrapper mx-5 mt-5">
-                            <img src="images/consultoria.png" alt="Consultoria Imobiliária Premium - Imóveis de alto padrão" class="rounded-2xl" onerror="this.style.display='none';">
+                        <div class="card-image-container mx-5 mt-5">
+                            <img src="images/consultoria.png" 
+                                 alt="Consultoria Imobiliária Premium - Imóveis de alto padrão"
+                                 class="rounded-2xl"
+                                 onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-fallback\'><i data-lucide=\'building-2\' class=\'w-12 h-12 text-gray-400\'></i><span class=\'text-sm text-gray-500 font-medium\'>Consultoria Premium</span><span class=\'text-xs text-gray-400\'>Imóveis de alto padrão</span></div>'; if(typeof lucide!=='undefined') lucide.createIcons();">
                         </div>
                         <div class="p-7 flex flex-col gap-4">
                             <div class="flex flex-wrap gap-2">
-                                <span class="badge-modern text-gold-accent bg-gold-accent/10 border-gold-accent/20">
-                                    <i data-lucide="crown" class="w-3.5 h-3.5"></i>
+                                <span class="badge-modern text-gold-accent" style="background: #fef9e6; border-color: #f3e5c0;">
+                                    <i data-lucide="star" class="w-3.5 h-3.5"></i>
                                     Exclusivo
                                 </span>
-                                <span class="badge-modern text-gray-600 bg-gray-50/90 border-gray-200">
+                                <span class="badge-modern text-gray-600" style="background: #f9fafb;">
                                     <i data-lucide="users" class="w-3.5 h-3.5"></i>
-                                    Análise personalizada
+                                    Consultoria personalizada
                                 </span>
                             </div>
                             <h3 class="text-2xl font-bold tracking-tight text-premium-dark">Consultoria Imobiliária Premium</h3>
-                            <p class="text-gray-500 text-base leading-relaxed">Imóveis de alto padrão com visão estratégica. Acesso exclusivo a oportunidades imobiliárias selecionadas, análise de mercado especializada e gestão patrimonial personalizada para clientes de alto patrimônio que buscam consolidação e crescimento sustentável.</p>
+                            <p class="text-gray-500 text-base leading-relaxed">Imóveis de alto padrão com visão estratégica. Acesso exclusivo a oportunidades imobiliárias selecionadas, análise de mercado especializada e gestão patrimonial personalizada para clientes de alto patrimônio.</p>
                             <a href="https://wa.me/5521990650767?text=Olá,%20gostaria%20de%20informações%20sobre%20a%20Consultoria%20Imobiliária%20Premium" target="_blank" rel="noopener noreferrer" class="btn-whatsapp mt-2 w-full text-white font-semibold py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all group">
                                 <i data-lucide="message-circle" class="w-5 h-5"></i>
                                 <span>Falar no WhatsApp</span>
@@ -396,15 +428,15 @@
                 </div>
             </section>
             
-            <!-- Refined Footer Disclaimer -->
+            <!-- Disclaimer Final -->
             <div class="mt-12 pt-10 border-t border-gray-200 flex flex-col items-center text-center">
                 <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white shadow-sm mb-6">
                     <i data-lucide="lock" class="w-4 h-4 text-gray-500"></i>
                     <span class="text-[0.7rem] font-medium text-gray-500 uppercase tracking-wider">Conteúdo seguro e validado</span>
                 </div>
                 <p class="text-gray-500 text-sm max-w-2xl leading-relaxed mx-auto">
-                    Todas as soluções apresentadas são fundamentadas em metodologias validadas e desenvolvidas por especialistas do mercado financeiro e imobiliário. 
-                    Os resultados podem variar de acordo com a dedicação e aplicação dos métodos. Recomendamos análise criteriosa antes de qualquer investimento.
+                    Todas as soluções apresentadas são baseadas em metodologias validadas e desenvolvidas por especialistas de mercado.
+                    Os resultados podem variar de acordo com a dedicação e aplicação dos métodos.
                 </p>
                 <div class="flex flex-wrap justify-center gap-6 mt-8 text-xs text-gray-400">
                     <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-500"></i> Metodologia comprovada</span>
@@ -415,22 +447,28 @@
         </div>
     </main>
     
-    <!-- Simple Footer -->
     <footer class="py-8 mt-4 border-t border-gray-100 bg-white/30">
         <div class="container-harmony text-center">
-            <p class="text-xs text-gray-400">© 2025 Estratégia Patrimonial — Curadoria de ativos e formação estratégica para geração e proteção de capital</p>
+            <p class="text-xs text-gray-400">© 2025 Estratégia Patrimonial — Soluções premium para geração e proteção de capital</p>
         </div>
     </footer>
     
-    <!-- Lucide Icons Initialization + Interactive Effects -->
+    <!-- Scripts: Lucide Icons + Garantia de exibição -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Lucide icons
+            // Inicializar todos os ícones Lucide
             if (typeof lucide !== 'undefined' && lucide.createIcons) {
                 lucide.createIcons();
             }
             
-            // Add smooth touch feedback for mobile cards
+            // Fallback para garantir que ícones sejam carregados mesmo após substituições dinâmicas
+            setTimeout(() => {
+                if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                    lucide.createIcons();
+                }
+            }, 100);
+            
+            // Adicionar efeito de toque suave para mobile
             const cards = document.querySelectorAll('.card-premium');
             cards.forEach(card => {
                 card.addEventListener('touchstart', function() {
@@ -445,36 +483,12 @@
                 });
             });
             
-            // Ensure all external links have security attributes
-            const externalLinks = document.querySelectorAll('a[href^="https://"]');
-            externalLinks.forEach(link => {
+            // Garantir que todos os links externos tenham segurança
+            const allLinks = document.querySelectorAll('a[href^="https://"]');
+            allLinks.forEach(link => {
                 if (!link.getAttribute('rel')) {
                     link.setAttribute('rel', 'noopener noreferrer');
                 }
-            });
-            
-            // Handle image loading errors gracefully
-            const images = document.querySelectorAll('.card-image-wrapper img');
-            images.forEach(img => {
-                img.addEventListener('error', function() {
-                    const wrapper = this.parentElement;
-                    wrapper.style.background = 'linear-gradient(135deg, #E8EDF5, #DFE6EF)';
-                    wrapper.style.display = 'flex';
-                    wrapper.style.alignItems = 'center';
-                    wrapper.style.justifyContent = 'center';
-                    wrapper.style.minHeight = '180px';
-                    
-                    const icon = document.createElement('i');
-                    icon.setAttribute('data-lucide', 'image');
-                    icon.style.color = '#9CA3AF';
-                    icon.style.width = '48px';
-                    icon.style.height = '48px';
-                    
-                    if (wrapper.childNodes.length === 1) {
-                        wrapper.appendChild(icon);
-                        if (typeof lucide !== 'undefined') lucide.createIcons();
-                    }
-                });
             });
         });
     </script>
