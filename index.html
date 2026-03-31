@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Sistema de Cards Patrimoniais Premium</title>
+  
+   <!-- Tailwind CSS -->
+   <script src="https://cdn.tailwindcss.com"></script>
+  
+   <!-- Lucide Icons -->
+   <script src="https://unpkg.com/lucide@latest"></script>
+  
+   <!-- Custom Styles -->
+   <link rel="stylesheet" href="style.css">
+  
+   <!-- Force Tailwind Utilities to Load -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+  
+   <!-- Tailwind Configuration -->
+   <script>
+       tailwind.config = {
+           important: true,
+           theme: {
+               extend: {
+                   colors: {
+                       'navy': {
+                           '50': '#f0f4f8',
+                           '100': '#d9e3f1',
+                           '200': '#b3c6e3',
+                           '300': '#8da9d5',
+                           '400': '#678cc7',
+                           '500': '#416fb9',
+                           '600': '#345994',
+                           '700': '#27436f',
+                           '800': '#1a2c4a',
+                           '900': '#0d1625',
+                           '950': '#060b13',
+                       }
+                   },
+                   fontFamily: {
+                       'sans': ['Inter', 'system-ui', 'sans-serif'],
+                   },
+                   boxShadow: {
+                       'card': '0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 5px rgba(0, 0, 0, 0.05)',
+                       'card-hover': '0 20px 40px rgba(0, 0, 0, 0.12), 0 5px 15px rgba(0, 0, 0, 0.08)',
+                       'btn': '0 4px 14px rgba(26, 44, 74, 0.25)',
+                   }
+               }
+           }
+       }
+   </script>
+  
+   <!-- Google Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+   <!-- Header -->
+   <header class="py-8 px-4 md:px-8">
+       <div class="max-w-7xl mx-auto">
+           <div class="flex flex-col md:flex-row justify-between items-center">
+               <div class="mb-6 md:mb-0">
+                   <h1 class="text-3xl md:text-4xl font-bold text-navy-800">Estratégia Patrimonial</h1>
+                   <p class="text-gray-600 mt-2">Soluções premium para geração e proteção de capital</p>
+               </div>
+               <div class="flex items-center space-x-4">
+                   <div class="hidden md:flex items-center space-x-2 text-navy-700">
+                       <i data-lucide="shield" class="w-5 h-5"></i>
+                       <span class="text-sm font-medium">Conteúdo Seguro</span>
+                   </div>
+                   <div class="hidden md:flex items-center space-x-2 text-navy-700">
+                       <i data-lucide="trending-up" class="w-5 h-5"></i>
+                       <span class="text-sm font-medium">Resultados Comprovados</span>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </header>
+
+
+   <main class="py-8 px-4 md:px-8">
+       <div class="max-w-7xl mx-auto">
+           <!-- Section 1: Geração de Capital -->
+           <section class="mb-16">
+               <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+                   <div>
+                       <h2 class="text-2xl md:text-3xl font-bold text-navy-800">🟢 Geração de Capital</h2>
+                       <p class="text-gray-600 mt-2 max-w-2xl">Soluções estratégicas para criar fluxos de renda consistentes e escaláveis no ambiente digital.</p>
+                   </div>
+                   <div class="mt-4 md:mt-0">
+                       <span class="inline-flex items-center px-4 py-2 rounded-full bg-green-50 text-green-700 text-sm font-medium">
+                           <i data-lucide="zap" class="w-4 h-4 mr-2"></i>
+                           3 Soluções Premium
+                       </span>
+                   </div>
+               </div>
+              
+               <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                   <!-- Card 1: Código do Tráfego Real -->
+                   <div class="card-container">
+                       <div class="card">
+                           <div class="card-image">
+                               <img src="images/CAPA_TRAFEGO_REAL.png" alt="Mockup do Código do Tráfego Real" class="image-placeholder">
+                               <div class="image-overlay"></div>
+                           </div>
+                           <div class="card-content">
+                               <!-- Tag acima do título -->
+                               <div class="mb-3">
+                                   <span class="inline-flex items-center gap-1.5 bg-green-50 text-green-700 rounded-full px-3 py-1.5 text-xs font-semibold shadow-sm border border-green-200">
+                                       <i data-lucide="bar-chart" class="w-3.5 h-3.5"></i>
+                                       Alto ROI
+                                   </span>
+                               </div>
+                               <h3 class="card-title">Código do Tráfego Real</h3>
+                               <p class="card-description">Pare de desperdiçar dinheiro com campanhas mal estruturadas. Método científico para otimização de tráfego pago com ROI mensurável.</p>
+                               <a href="https://kiwify.app/oYmqCtv" target="_blank" class="mt-auto w-full bg-navy-800 hover:bg-navy-900 text-white font-semibold py-3.5 px-6 rounded-lg shadow-btn hover:shadow-xl transition-all duration-300 flex items-center justify-center group">
+                                   <span class="font-semibold">Acessar agora</span>
+                                   <i data-lucide="arrow-right" class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                               </a>
+                           </div>
+                       </div>
+                   </div>
+                  
+                   <!-- Card 2: Sistema Milionário -->
+                   <div class="card-container">
+                       <div class="card">
+                           <div class="card-image">
+                               <img src="images/sistemamilionario.jpg" alt="Mockup do Sistema Milionário" class="image-placeholder">
+                               <div class="image-overlay"></div>
+                           </div>
+                           <div class="card-content">
+                               <!-- Tag acima do título -->
+                               <div class="mb-3">
+                                   <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 rounded-full px-3 py-1.5 text-xs font-semibold shadow-sm border border-blue-200">
+                                       <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+                                       Estrutura Completa
+                                   </span>
+                               </div>
+                               <h3 class="card-title">Sistema Milionário</h3>
+                               <p class="card-description">Estrutura para iniciar no digital do zero. Roadmap completo com etapas claras para construir um negócio digital do absoluto zero.</p>
+                               <a href="https://kiwify.app/xOLgXNT?afid=j1q39KnQ" target="_blank" class="mt-auto w-full bg-navy-800 hover:bg-navy-900 text-white font-semibold py-3.5 px-6 rounded-lg shadow-btn hover:shadow-xl transition-all duration-300 flex items-center justify-center group">
+                                   <span class="font-semibold">Ver método</span>
+                                   <i data-lucide="arrow-right" class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                               </a>
+                           </div>
+                       </div>
+                   </div>
+                  
+                   <!-- Card 3: StoryCash -->
+                   <div class="card-container">
+                       <div class="card">
+                           <div class="card-image">
+                               <img src="images/storycash.png" alt="Mockup do StoryCash" class="image-placeholder">
+                               <div class="image-overlay"></div>
+                           </div>
+                           <div class="card-content">
+                               <!-- Tag acima do título -->
+                               <div class="mb-3">
+                                   <span class="inline-flex items-center gap-1.5 bg-purple-50 text-purple-700 rounded-full px-3 py-1.5 text-xs font-semibold shadow-sm border border-purple-200">
+                                       <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                                       Storytelling
+                                   </span>
+                               </div>
+                               <h3 class="card-title">StoryCash</h3>
+                               <p class="card-description">Transforme audiência em receita estratégica. Monetização inteligente de redes sociais através de storytelling e funis otimizados.</p>
+                               <a href="https://kiwify.app/m5OA3mN?afid=Ov8kxfbw" target="_blank" class="mt-auto w-full bg-navy-800 hover:bg-navy-900 text-white font-semibold py-3.5 px-6 rounded-lg shadow-btn hover:shadow-xl transition-all duration-300 flex items-center justify-center group">
+                                   <span class="font-semibold">Conhecer</span>
+                                   <i data-lucide="arrow-right" class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                               </a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </section>
+          
+           <!-- Section 2: Proteção Patrimonial -->
+           <section class="mb-16">
+               <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+                   <div>
+                       <h2 class="text-2xl md:text-3xl font-bold text-navy-800">🟡 Proteção Patrimonial</h2>
+                       <p class="text-gray-600 mt-2 max-w-2xl">Proteja e valorize seus ativos imobiliários com metodologia técnica especializada.</p>
+                   </div>
+                   <div class="mt-4 md:mt-0">
+                       <span class="inline-flex items-center px-4 py-2 rounded-full bg-yellow-50 text-yellow-700 text-sm font-medium">
+                           <i data-lucide="shield" class="w-4 h-4 mr-2"></i>
+                           Formação Técnica
+                       </span>
+                   </div>
+               </div>
+              
+               <div class="flex justify-center">
+                   <div class="w-full max-w-2xl">
+                       <div class="card-container">
+                           <div class="card">
+                               <div class="card-image">
+                                   <img src="images/vistoriadorpro.png" alt="Mockup do Vistoriador PRO" class="image-placeholder">
+                                   <div class="image-overlay"></div>
+                               </div>
+                               <div class="card-content">
+                                   <!-- Tag acima do título -->
+                                   <div class="mb-3">
+                                       <span class="inline-flex items-center gap-1.5 bg-yellow-50 text-yellow-700 rounded-full px-3 py-1.5 text-xs font-semibold shadow-sm border border-yellow-200">
+                                           <i data-lucide="home" class="w-3.5 h-3.5"></i>
+                                           Especializado
+                                       </span>
+                                   </div>
+                                   <h3 class="card-title">Vistoriador PRO</h3>
+                                   <p class="card-description">Formação técnica para proteger e valorizar patrimônio imobiliário. Aprenda a identificar, avaliar e documentar condições de imóveis com precisão técnica para evitar prejuízos e maximizar investimentos.</p>
+                                   <a href="https://kiwify.app/DoUTdmx" target="_blank" class="mt-auto w-full bg-navy-800 hover:bg-navy-900 text-white font-semibold py-3.5 px-6 rounded-lg shadow-btn hover:shadow-xl transition-all duration-300 flex items-center justify-center group">
+                                       <span class="font-semibold">Acessar formação</span>
+                                       <i data-lucide="arrow-right" class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                                   </a>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </section>
+          
+           <!-- Section 3: Consolidação Patrimonial -->
+           <section class="mb-16">
+               <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+                   <div>
+                       <h2 class="text-2xl md:text-3xl font-bold text-navy-800">🔵 Consolidação Patrimonial</h2>
+                       <p class="text-gray-600 mt-2 max-w-2xl">Estratégias de alto padrão para consolidação e crescimento de patrimônio através de imóveis premium.</p>
+                   </div>
+                   <div class="mt-4 md:mt-0">
+                       <span class="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm font-medium">
+                           <i data-lucide="building" class="w-4 h-4 mr-2"></i>
+                           Alto Padrão
+                       </span>
+                   </div>
+               </div>
+              
+               <div class="flex justify-center">
+                   <div class="w-full max-w-2xl">
+                       <div class="card-container">
+                           <div class="card">
+                               <div class="card-image">
+                                   <img src="images/consultoria.png" alt="Imagem institucional de imóvel premium" class="image-placeholder">
+                                   <div class="image-overlay"></div>
+                               </div>
+                               <div class="card-content">
+                                   <!-- Tag acima do título -->
+                                   <div class="mb-3">
+                                       <span class="inline-flex items-center gap-1.5 bg-blue-100 text-blue-800 rounded-full px-3 py-1.5 text-xs font-semibold shadow-sm border border-blue-300">
+                                           <i data-lucide="star" class="w-3.5 h-3.5"></i>
+                                           Exclusivo
+                                       </span>
+                                   </div>
+                                   <h3 class="card-title">Consultoria Imobiliária Premium</h3>
+                                   <p class="card-description">Imóveis de alto padrão com visão estratégica. Acesso exclusivo a oportunidades imobiliárias selecionadas, análise de mercado especializada e gestão patrimonial personalizada para clientes de alto patrimônio.</p>
+                                   <a href="https://wa.me/5521990650767?text=Olá,%20gostaria%20de%20informações%20sobre%20a%20Consultoria%20Imobiliária%20Premium" target="_blank" class="mt-auto w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3.5 px-6 rounded-lg shadow-btn hover:shadow-xl transition-all duration-300 flex items-center justify-center group">
+                                       <i data-lucide="message-circle" class="w-5 h-5 mr-2"></i>
+                                       <span class="font-semibold">Falar no WhatsApp</span>
+                                   </a>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </section>
+          
+           <!-- Footer Note -->
+           <div class="mt-16 pt-8 border-t border-gray-200">
+               <div class="max-w-3xl mx-auto text-center">
+                   <div class="flex justify-center mb-4">
+                       <i data-lucide="lock" class="w-6 h-6 text-navy-600"></i>
+                   </div>
+                   <p class="text-gray-600 text-sm md:text-base">
+                       Todas as soluções apresentadas são baseadas em metodologias validadas e desenvolvidas por especialistas de mercado.
+                       Os resultados podem variar de acordo com a dedicação e aplicação dos métodos.
+                   </p>
+               </div>
+           </div>
+       </div>
+   </main>
+
+
+   <!-- Initialize Lucide Icons -->
+   <script>
+       lucide.createIcons();
+      
+       // Adicionar efeito de toque para mobile
+       document.addEventListener('DOMContentLoaded', function() {
+           const cards = document.querySelectorAll('.card');
+          
+           cards.forEach(card => {
+               card.addEventListener('touchstart', function() {
+                   this.classList.add('touch-active');
+               });
+              
+               card.addEventListener('touchend', function() {
+                   this.classList.remove('touch-active');
+               });
+           });
+       });
+   </script>
+<script src="https://deepsite.hf.co/deepsite-badge.js"></script>
+</body>
+</html>
