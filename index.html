@@ -54,7 +54,7 @@
            -webkit-font-smoothing: antialiased;
        }
        
-       /* Premium Card Design - Garantia de exibição */
+       /* Premium Card Design */
        .card-premium {
            background: #FFFFFF;
            border-radius: 1.75rem;
@@ -65,7 +65,6 @@
            flex-direction: column;
            height: 100%;
            overflow: hidden;
-           backdrop-filter: blur(0px);
        }
        
        .card-premium:hover {
@@ -74,35 +73,22 @@
            border-color: rgba(201, 160, 61, 0.25);
        }
        
-       /* Image Container - Otimizado para PNG */
-       .card-image-container {
+       /* Image Container - Design elegante sem depender de arquivos externos */
+       .card-image-premium {
            position: relative;
            overflow: hidden;
            background: linear-gradient(135deg, #F4F7FC 0%, #EBF0F7 100%);
-           border-radius: 1.5rem;
            margin: 1.25rem 1.25rem 0 1.25rem;
-           min-height: 200px;
+           min-height: 220px;
            display: flex;
            align-items: center;
            justify-content: center;
-       }
-       
-       .card-image-container img {
-           width: 100%;
-           height: auto;
-           display: block;
-           transition: transform 0.5s ease;
-           object-fit: cover;
-           aspect-ratio: 16 / 10;
            border-radius: 1.25rem;
+           transition: all 0.3s ease;
        }
        
-       .card-premium:hover .card-image-container img {
-           transform: scale(1.03);
-       }
-       
-       /* Fallback visual elegante para imagens */
-       .image-fallback {
+       /* Estilo para os placeholders premium */
+       .image-placeholder-premium {
            display: flex;
            flex-direction: column;
            align-items: center;
@@ -110,15 +96,23 @@
            gap: 0.75rem;
            padding: 2rem;
            text-align: center;
-           background: linear-gradient(135deg, #EFF3FA, #E8EDF5);
            width: 100%;
            height: 100%;
-           min-height: 200px;
+           background: linear-gradient(135deg, #FFFFFF, #F8FAFE);
            border-radius: 1.25rem;
+           transition: all 0.3s ease;
        }
        
-       .image-fallback i {
-           opacity: 0.6;
+       .card-premium:hover .image-placeholder-premium {
+           transform: scale(1.02);
+       }
+       
+       .placeholder-icon {
+           width: 64px;
+           height: 64px;
+           stroke-width: 1.5;
+           color: #C9A03D;
+           opacity: 0.7;
        }
        
        /* Badge Moderno */
@@ -176,8 +170,9 @@
            .section-spacer {
                margin-bottom: 3.5rem;
            }
-           .card-image-container {
+           .card-image-premium {
                margin: 1rem 1rem 0 1rem;
+               min-height: 180px;
            }
        }
        
@@ -246,7 +241,7 @@
     <main class="py-8 md:py-12">
         <div class="container-harmony">
             
-            <!-- ================= SECTION 1: GERAÇÃO DE CAPITAL (3 CARDS FIXOS) ================= -->
+            <!-- ================= SECTION 1: GERAÇÃO DE CAPITAL (3 CARDS COM PLACEHOLDERS PREMIUM) ================= -->
             <section class="section-spacer">
                 <div class="flex flex-wrap justify-between items-end gap-4 mb-10">
                     <div class="section-header">
@@ -264,13 +259,15 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
                     
-                    <!-- Card 1: Código do Tráfego Real (PNG) -->
+                    <!-- Card 1: Código do Tráfego Real -->
                     <div class="opacity-0 animate-[fade-up_0.5s_ease-out_forwards] animate-delay-1">
                         <div class="card-premium">
-                            <div class="card-image-container">
-                                <img src="images/CAPA_TRAFEGO_REAL.png" 
-                                     alt="Código do Tráfego Real - Método de otimização de tráfego pago"
-                                     onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-fallback\'><i data-lucide=\'trending-up\' class=\'w-12 h-12 text-gray-400\'></i><span class=\'text-sm text-gray-500 font-medium\'>Código do Tráfego Real</span><span class=\'text-xs text-gray-400\'>Imagem ilustrativa</span></div>'; if(typeof lucide!=='undefined') lucide.createIcons();">
+                            <div class="card-image-premium">
+                                <div class="image-placeholder-premium">
+                                    <i data-lucide="trending-up" class="placeholder-icon"></i>
+                                    <span class="text-sm font-semibold text-gray-600 mt-2">Código do Tráfego Real</span>
+                                    <span class="text-xs text-gray-400">Método Científico de Tráfego</span>
+                                </div>
                             </div>
                             <div class="p-6 flex flex-col flex-grow gap-3">
                                 <div class="flex justify-between items-start">
@@ -289,13 +286,15 @@
                         </div>
                     </div>
                     
-                    <!-- Card 2: Sistema Milionário (JPG - mas compatível) -->
+                    <!-- Card 2: Sistema Milionário -->
                     <div class="opacity-0 animate-[fade-up_0.5s_ease-out_forwards] animate-delay-2">
                         <div class="card-premium">
-                            <div class="card-image-container">
-                                <img src="images/sistemamilionario.jpg" 
-                                     alt="Sistema Milionário - Roadmap completo para negócio digital"
-                                     onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-fallback\'><i data-lucide=\'layers\' class=\'w-12 h-12 text-gray-400\'></i><span class=\'text-sm text-gray-500 font-medium\'>Sistema Milionário</span><span class=\'text-xs text-gray-400\'>Estrutura completa</span></div>'; if(typeof lucide!=='undefined') lucide.createIcons();">
+                            <div class="card-image-premium">
+                                <div class="image-placeholder-premium">
+                                    <i data-lucide="layers" class="placeholder-icon"></i>
+                                    <span class="text-sm font-semibold text-gray-600 mt-2">Sistema Milionário</span>
+                                    <span class="text-xs text-gray-400">Roadmap Completo</span>
+                                </div>
                             </div>
                             <div class="p-6 flex flex-col flex-grow gap-3">
                                 <div class="flex justify-between items-start">
@@ -314,13 +313,15 @@
                         </div>
                     </div>
                     
-                    <!-- Card 3: StoryCash (PNG) -->
+                    <!-- Card 3: StoryCash -->
                     <div class="opacity-0 animate-[fade-up_0.5s_ease-out_forwards] animate-delay-3">
                         <div class="card-premium">
-                            <div class="card-image-container">
-                                <img src="images/storycash.png" 
-                                     alt="StoryCash - Monetização inteligente de redes sociais"
-                                     onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-fallback\'><i data-lucide=\'message-circle\' class=\'w-12 h-12 text-gray-400\'></i><span class=\'text-sm text-gray-500 font-medium\'>StoryCash</span><span class=\'text-xs text-gray-400\'>Storytelling estratégico</span></div>'; if(typeof lucide!=='undefined') lucide.createIcons();">
+                            <div class="card-image-premium">
+                                <div class="image-placeholder-premium">
+                                    <i data-lucide="message-circle" class="placeholder-icon"></i>
+                                    <span class="text-sm font-semibold text-gray-600 mt-2">StoryCash</span>
+                                    <span class="text-xs text-gray-400">Storytelling Estratégico</span>
+                                </div>
                             </div>
                             <div class="p-6 flex flex-col flex-grow gap-3">
                                 <div class="flex justify-between items-start">
@@ -358,11 +359,12 @@
                 </div>
                 <div class="max-w-3xl mx-auto w-full">
                     <div class="card-premium hover:scale-[1.01] transition-all duration-300">
-                        <div class="card-image-container mx-5 mt-5">
-                            <img src="images/vistoriadorpro.png" 
-                                 alt="Vistoriador PRO - Formação técnica para vistoria imobiliária"
-                                 class="rounded-2xl"
-                                 onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-fallback\'><i data-lucide=\'clipboard-check\' class=\'w-12 h-12 text-gray-400\'></i><span class=\'text-sm text-gray-500 font-medium\'>Vistoriador PRO</span><span class=\'text-xs text-gray-400\'>Formação técnica completa</span></div>'; if(typeof lucide!=='undefined') lucide.createIcons();">
+                        <div class="card-image-premium mx-5 mt-5">
+                            <div class="image-placeholder-premium">
+                                <i data-lucide="clipboard-check" class="placeholder-icon"></i>
+                                <span class="text-sm font-semibold text-gray-600 mt-2">Vistoriador PRO</span>
+                                <span class="text-xs text-gray-400">Formação Técnica Completa</span>
+                            </div>
                         </div>
                         <div class="p-7 flex flex-col gap-4">
                             <div class="flex items-center gap-2">
@@ -399,11 +401,12 @@
                 </div>
                 <div class="max-w-3xl mx-auto w-full">
                     <div class="card-premium border-t-2 border-t-gold-accent">
-                        <div class="card-image-container mx-5 mt-5">
-                            <img src="images/consultoria.png" 
-                                 alt="Consultoria Imobiliária Premium - Imóveis de alto padrão"
-                                 class="rounded-2xl"
-                                 onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-fallback\'><i data-lucide=\'building-2\' class=\'w-12 h-12 text-gray-400\'></i><span class=\'text-sm text-gray-500 font-medium\'>Consultoria Premium</span><span class=\'text-xs text-gray-400\'>Imóveis de alto padrão</span></div>'; if(typeof lucide!=='undefined') lucide.createIcons();">
+                        <div class="card-image-premium mx-5 mt-5">
+                            <div class="image-placeholder-premium">
+                                <i data-lucide="building-2" class="placeholder-icon"></i>
+                                <span class="text-sm font-semibold text-gray-600 mt-2">Consultoria Imobiliária</span>
+                                <span class="text-xs text-gray-400">Alto Padrão · Estratégia Familiar</span>
+                            </div>
                         </div>
                         <div class="p-7 flex flex-col gap-4">
                             <div class="flex flex-wrap gap-2">
@@ -461,7 +464,7 @@
                 lucide.createIcons();
             }
             
-            // Fallback para garantir que ícones sejam carregados mesmo após substituições dinâmicas
+            // Garantir que todos os placeholders recebam ícones
             setTimeout(() => {
                 if (typeof lucide !== 'undefined' && lucide.createIcons) {
                     lucide.createIcons();
@@ -490,6 +493,10 @@
                     link.setAttribute('rel', 'noopener noreferrer');
                 }
             });
+            
+            // Verificar se os 3 cards estão visíveis
+            const cardsCount = document.querySelectorAll('.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 .card-premium').length;
+            console.log('Cards de Geração de Capital visíveis:', cardsCount);
         });
     </script>
 </body>
