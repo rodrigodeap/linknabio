@@ -1,613 +1,496 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Estratégia Patrimonial | Sistema Premium de Cards</title>
-  
-   <!-- Tailwind CSS -->
-   <script src="https://cdn.tailwindcss.com"></script>
-  
-   <!-- Lucide Icons -->
-   <script src="https://unpkg.com/lucide@latest"></script>
-  
-   <!-- Tailwind Configuration -->
-   <script>
-       tailwind.config = {
-           important: true,
-           theme: {
-               extend: {
-                   colors: {
-                       'navy': {
-                           '50': '#f0f4f8',
-                           '100': '#d9e3f1',
-                           '200': '#b3c6e3',
-                           '300': '#8da9d5',
-                           '400': '#678cc7',
-                           '500': '#416fb9',
-                           '600': '#345994',
-                           '700': '#27436f',
-                           '800': '#1a2c4a',
-                           '900': '#0d1625',
-                           '950': '#060b13',
-                       },
-                       'gold': {
-                           '50': '#fef9e6',
-                           '100': '#fcf0cc',
-                           '200': '#fae099',
-                           '300': '#f7d166',
-                           '400': '#f5c133',
-                           '500': '#f2b200',
-                           '600': '#c28e00',
-                           '700': '#916b00',
-                           '800': '#614700',
-                           '900': '#302400',
-                       }
-                   },
-                   fontFamily: {
-                       'sans': ['Inter', 'system-ui', 'sans-serif'],
-                   },
-                   boxShadow: {
-                       'card': '0 20px 35px -12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05)',
-                       'card-hover': '0 30px 45px -15px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.1)',
-                       'btn': '0 4px 14px rgba(26, 44, 74, 0.25)',
-                       'glow': '0 0 20px rgba(242, 178, 0, 0.15)',
-                   },
-                   animation: {
-                       'float': 'float 6s ease-in-out infinite',
-                       'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                   },
-                   keyframes: {
-                       float: {
-                           '0%, 100%': { transform: 'translateY(0px)' },
-                           '50%': { transform: 'translateY(-10px)' },
-                       }
-                   }
-               }
-           }
-       }
-   </script>
-  
-   <!-- Google Fonts -->
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-   <!-- Custom Styles - Design Premium -->
-   <style>
-       * {
-           margin: 0;
-           padding: 0;
-           box-sizing: border-box;
-       }
-       
-       body {
-           font-family: 'Inter', system-ui, -apple-system, sans-serif;
-           background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-       }
-       
-       /* Animação de gradiente no header */
-       @keyframes gradientShift {
-           0%, 100% { background-position: 0% 50%; }
-           50% { background-position: 100% 50%; }
-       }
-       
-       /* Card Container */
-       .card-container {
-           height: 100%;
-       }
-       
-       /* Card Principal com Design Premium */
-       .card {
-           background: rgba(255, 255, 255, 0.95);
-           backdrop-filter: blur(0px);
-           border-radius: 1.75rem;
-           overflow: hidden;
-           transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-           box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02);
-           border: 1px solid rgba(255, 255, 255, 0.5);
-           display: flex;
-           flex-direction: column;
-           height: 100%;
-           position: relative;
-       }
-       
-       .card::before {
-           content: '';
-           position: absolute;
-           top: 0;
-           left: 0;
-           right: 0;
-           height: 4px;
-           background: linear-gradient(90deg, #f2b200, #416fb9, #f2b200);
-           opacity: 0;
-           transition: opacity 0.4s ease;
-       }
-       
-       .card:hover {
-           transform: translateY(-8px);
-           box-shadow: 0 30px 45px -15px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.1);
-           border-color: rgba(242, 178, 0, 0.2);
-       }
-       
-       .card:hover::before {
-           opacity: 1;
-       }
-       
-       /* Card Image com efeito de zoom e overlay */
-       .card-image {
-           position: relative;
-           overflow: hidden;
-           background: linear-gradient(135deg, #eef2f6 0%, #e2e8f0 100%);
-           min-height: 240px;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           border-radius: 1.5rem 1.5rem 0 0;
-       }
-       
-       .image-placeholder {
-           width: 100%;
-           height: auto;
-           display: block;
-           transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-           min-height: 240px;
-           object-fit: cover;
-       }
-       
-       .card:hover .image-placeholder {
-           transform: scale(1.05);
-       }
-       
-       .image-overlay {
-           position: absolute;
-           top: 0;
-           left: 0;
-           right: 0;
-           bottom: 0;
-           background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.05) 100%);
-           pointer-events: none;
-           opacity: 0;
-           transition: opacity 0.4s ease;
-       }
-       
-       .card:hover .image-overlay {
-           opacity: 1;
-       }
-       
-       /* Card Content */
-       .card-content {
-           padding: 1.75rem;
-           display: flex;
-           flex-direction: column;
-           flex-grow: 1;
-           gap: 0.875rem;
-       }
-       
-       /* Card Title com gradiente */
-       .card-title {
-           font-size: 1.35rem;
-           font-weight: 800;
-           background: linear-gradient(135deg, #1a2c4a 0%, #27436f 100%);
-           -webkit-background-clip: text;
-           background-clip: text;
-           color: transparent;
-           line-height: 1.35;
-           margin: 0;
-           letter-spacing: -0.3px;
-       }
-       
-       /* Card Description */
-       .card-description {
-           font-size: 0.9rem;
-           color: #4b5563;
-           line-height: 1.6;
-           margin: 0;
-           flex-grow: 1;
-       }
-       
-       /* Badges com estilo moderno */
-       .badge-premium {
-           display: inline-flex;
-           align-items: center;
-           gap: 0.5rem;
-           padding: 0.4rem 1rem;
-           border-radius: 2rem;
-           font-size: 0.7rem;
-           font-weight: 700;
-           letter-spacing: -0.2px;
-           transition: all 0.3s ease;
-           border: 1px solid transparent;
-       }
-       
-       .badge-premium:hover {
-           transform: translateY(-2px);
-           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-       }
-       
-       /* Botões com efeito moderno */
-       .btn-premium {
-           background: linear-gradient(135deg, #1a2c4a 0%, #27436f 100%);
-           transition: all 0.3s ease;
-           border: none;
-           box-shadow: 0 4px 14px rgba(26, 44, 74, 0.25);
-           cursor: pointer;
-           position: relative;
-           overflow: hidden;
-       }
-       
-       .btn-premium::before {
-           content: '';
-           position: absolute;
-           top: 0;
-           left: -100%;
-           width: 100%;
-           height: 100%;
-           background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-           transition: left 0.5s ease;
-       }
-       
-       .btn-premium:hover::before {
-           left: 100%;
-       }
-       
-       .btn-premium:hover {
-           background: linear-gradient(135deg, #27436f 0%, #345994 100%);
-           transform: translateY(-2px);
-           box-shadow: 0 8px 20px rgba(26, 44, 74, 0.3);
-       }
-       
-       .btn-whatsapp-premium {
-           background: linear-gradient(135deg, #1f8b4c 0%, #166f3e 100%);
-           transition: all 0.3s ease;
-           position: relative;
-           overflow: hidden;
-       }
-       
-       .btn-whatsapp-premium::before {
-           content: '';
-           position: absolute;
-           top: 0;
-           left: -100%;
-           width: 100%;
-           height: 100%;
-           background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-           transition: left 0.5s ease;
-       }
-       
-       .btn-whatsapp-premium:hover::before {
-           left: 100%;
-       }
-       
-       .btn-whatsapp-premium:hover {
-           background: linear-gradient(135deg, #166f3e 0%, #0e552f 100%);
-           transform: translateY(-2px);
-           box-shadow: 0 8px 20px rgba(31, 139, 76, 0.35);
-       }
-       
-       /* Touch Active Effect */
-       .card.touch-active {
-           transform: scale(0.98);
-           transition: transform 0.1s ease;
-       }
-       
-       /* Header com gradiente e efeito glass */
-       .header-premium {
-           background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.98) 100%);
-           backdrop-filter: blur(10px);
-           border-bottom: 1px solid rgba(242, 178, 0, 0.2);
-       }
-       
-       /* Section Headers com detalhes dourados */
-       .section-header-premium h2 {
-           position: relative;
-           display: inline-block;
-       }
-       
-       .section-header-premium h2::after {
-           content: '';
-           position: absolute;
-           bottom: -8px;
-           left: 0;
-           width: 60px;
-           height: 3px;
-           background: linear-gradient(90deg, #f2b200, #416fb9);
-           border-radius: 3px;
-       }
-       
-       /* Responsividade */
-       @media (max-width: 768px) {
-           .card-content {
-               padding: 1.25rem;
-           }
-           
-           .card-title {
-               font-size: 1.2rem;
-           }
-           
-           .card-image {
-               min-height: 200px;
-           }
-           
-           .image-placeholder {
-               min-height: 200px;
-           }
-       }
-   </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Chave Mestra Ecossistema | Rodrigo Assis</title>
+    
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts + fallback -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles com tendências 2025 -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #fafbfe 0%, #f2f5fc 100%);
+            scroll-behavior: smooth;
+        }
+
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .card-modern {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 28px;
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .card-modern:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 30px 45px -18px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(65, 111, 185, 0.2);
+            border-color: rgba(65, 111, 185, 0.3);
+        }
+
+        .glass-header {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-gradient {
+            background: linear-gradient(105deg, #1a2c4a 0%, #27436f 100%);
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 14px rgba(26, 44, 74, 0.2);
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 22px -8px rgba(26, 44, 74, 0.3);
+            background: linear-gradient(105deg, #27436f 0%, #1a2c4a 100%);
+        }
+
+        .btn-wa {
+            background: linear-gradient(105deg, #075e54 0%, #128c7e 100%);
+        }
+
+        .btn-wa:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 22px -8px rgba(7, 94, 84, 0.3);
+        }
+
+        .img-zoom {
+            overflow: hidden;
+            border-radius: 24px;
+        }
+
+        .img-zoom img {
+            transition: transform 0.6s ease, filter 0.4s;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-modern:hover .img-zoom img {
+            transform: scale(1.06);
+        }
+
+        .badge-modern {
+            backdrop-filter: blur(4px);
+            letter-spacing: -0.01em;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #eef2f8;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b9c3d0;
+            border-radius: 12px;
+        }
+
+        .animate-float {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+
+        .consultoria-glow {
+            background: radial-gradient(circle at 0% 20%, rgba(65,111,185,0.08) 0%, rgba(255,255,255,0) 70%);
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            important: true,
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': {
+                            '50': '#f0f4f8',
+                            '100': '#d9e3f1',
+                            '200': '#b3c6e3',
+                            '300': '#8da9d5',
+                            '400': '#678cc7',
+                            '500': '#416fb9',
+                            '600': '#345994',
+                            '700': '#27436f',
+                            '800': '#1a2c4a',
+                            '900': '#0d1625',
+                            '950': '#060b13',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
 </head>
-<body class="font-sans text-gray-800">
-   <!-- Header Premium com efeito glass -->
-   <header class="header-premium py-6 px-4 md:px-8 sticky top-0 z-50">
-       <div class="max-w-7xl mx-auto">
-           <div class="flex flex-col md:flex-row justify-between items-center">
-               <div class="mb-6 md:mb-0 text-center md:text-left">
-                   <h1 class="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-navy-800 via-navy-700 to-gold-600 bg-clip-text text-transparent tracking-tight">
-                       Estratégia Patrimonial
-                   </h1>
-                   <p class="text-gray-500 mt-2 text-sm md:text-base">Soluções premium para geração e proteção de capital</p>
-               </div>
-               <div class="flex items-center space-x-4">
-                   <div class="hidden md:flex items-center space-x-2 px-3 py-1.5 bg-gold-50 rounded-full border border-gold-200">
-                       <i data-lucide="shield" class="w-4 h-4 text-gold-600"></i>
-                       <span class="text-xs font-semibold text-gold-700">Conteúdo Seguro</span>
-                   </div>
-                   <div class="hidden md:flex items-center space-x-2 px-3 py-1.5 bg-navy-50 rounded-full border border-navy-200">
-                       <i data-lucide="trending-up" class="w-4 h-4 text-navy-600"></i>
-                       <span class="text-xs font-semibold text-navy-700">Resultados Comprovados</span>
-                   </div>
-               </div>
-           </div>
-       </div>
-   </header>
+<body class="font-sans text-gray-800 antialiased">
 
+    <!-- Header glass -->
+    <header class="glass-header sticky top-0 z-50 py-5 px-6 md:px-10">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-navy-700 to-indigo-700 flex items-center justify-center shadow-md">
+                    <i data-lucide="key" class="w-5 h-5 text-white"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-navy-800 to-navy-600">Chave Mestra</h1>
+                    <p class="text-xs text-gray-500 hidden sm:block">Ecossistema de aceleração imobiliária</p>
+                </div>
+            </div>
+            <div class="flex gap-2 text-sm font-medium">
+                <div class="hidden md:flex items-center gap-1.5 bg-white/70 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-100">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
+                    <span class="text-gray-700">Blindagem jurídica</span>
+                </div>
+                <div class="hidden md:flex items-center gap-1.5 bg-white/70 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-100">
+                    <i data-lucide="rocket" class="w-4 h-4 text-indigo-500"></i>
+                    <span class="text-gray-700">Venda acelerada</span>
+                </div>
+            </div>
+        </div>
+    </header>
 
-   <main class="py-12 px-4 md:px-8">
-       <div class="max-w-7xl mx-auto">
-           <!-- Section 1: Geração de Capital -->
-           <section class="mb-20">
-               <div class="section-header-premium flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
-                   <div>
-                       <div class="flex items-center gap-2 mb-2">
-                           <div class="w-1.5 h-8 bg-gradient-to-b from-green-500 to-green-600 rounded-full"></div>
-                           <h2 class="text-3xl md:text-4xl font-bold text-navy-800">Geração de Capital</h2>
-                       </div>
-                       <p class="text-gray-500 mt-2 max-w-2xl text-base">Soluções estratégicas para criar fluxos de renda consistentes e escaláveis no ambiente digital.</p>
-                   </div>
-                   <div class="mt-4 md:mt-0">
-                       <span class="inline-flex items-center px-5 py-2.5 rounded-full bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 text-sm font-bold border border-green-200 shadow-sm">
-                           <i data-lucide="zap" class="w-4 h-4 mr-2"></i>
-                           3 Soluções Premium
-                       </span>
-                   </div>
-               </div>
-              
-               <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                   <!-- Card 1: Código do Tráfego Real -->
-                   <div class="card-container">
-                       <div class="card">
-                           <div class="card-image">
-                               <img src="images/CAPA_TRAFEGO_REAL.png" alt="Código do Tráfego Real" class="image-placeholder" onerror="this.src='https://placehold.co/600x400/1a2c4a/ffffff?text=Código+do+Tráfego+Real'">
-                               <div class="image-overlay"></div>
-                           </div>
-                           <div class="card-content">
-                               <div class="mb-2">
-                                   <span class="badge-premium bg-green-50 text-green-700 border-green-200">
-                                       <i data-lucide="bar-chart" class="w-3.5 h-3.5"></i>
-                                       Alto ROI
-                                   </span>
-                               </div>
-                               <h3 class="card-title">Código do Tráfego Real</h3>
-                               <p class="card-description">Pare de desperdiçar dinheiro com campanhas mal estruturadas. Método científico para otimização de tráfego pago com ROI mensurável e resultados escaláveis.</p>
-                               <a href="https://kiwify.app/oYmqCtv" target="_blank" class="btn-premium mt-2 w-full text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all group">
-                                   <span>Acessar agora</span>
-                                   <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                               </a>
-                           </div>
-                       </div>
-                   </div>
-                  
-                   <!-- Card 2: Sistema Milionário -->
-                   <div class="card-container">
-                       <div class="card">
-                           <div class="card-image">
-                               <img src="images/sistemamilionario.jpg" alt="Sistema Milionário" class="image-placeholder" onerror="this.src='https://placehold.co/600x400/1a2c4a/ffffff?text=Sistema+Milionário'">
-                               <div class="image-overlay"></div>
-                           </div>
-                           <div class="card-content">
-                               <div class="mb-2">
-                                   <span class="badge-premium bg-blue-50 text-blue-700 border-blue-200">
-                                       <i data-lucide="layers" class="w-3.5 h-3.5"></i>
-                                       Estrutura Completa
-                                   </span>
-                               </div>
-                               <h3 class="card-title">Sistema Milionário</h3>
-                               <p class="card-description">Estrutura para iniciar no digital do zero. Roadmap completo com etapas claras para construir um negócio digital do absoluto zero com resultados consistentes.</p>
-                               <a href="https://kiwify.app/xOLgXNT?afid=j1q39KnQ" target="_blank" class="btn-premium mt-2 w-full text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all group">
-                                   <span>Ver método</span>
-                                   <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                               </a>
-                           </div>
-                       </div>
-                   </div>
-                  
-                   <!-- Card 3: StoryCash -->
-                   <div class="card-container">
-                       <div class="card">
-                           <div class="card-image">
-                               <img src="images/storycash.png" alt="StoryCash" class="image-placeholder" onerror="this.src='https://placehold.co/600x400/1a2c4a/ffffff?text=StoryCash'">
-                               <div class="image-overlay"></div>
-                           </div>
-                           <div class="card-content">
-                               <div class="mb-2">
-                                   <span class="badge-premium bg-purple-50 text-purple-700 border-purple-200">
-                                       <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
-                                       Storytelling
-                                   </span>
-                               </div>
-                               <h3 class="card-title">StoryCash</h3>
-                               <p class="card-description">Transforme audiência em receita estratégica. Monetização inteligente de redes sociais através de storytelling e funis otimizados para conversão.</p>
-                               <a href="https://kiwify.app/m5OA3mN?afid=Ov8kxfbw" target="_blank" class="btn-premium mt-2 w-full text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all group">
-                                   <span>Conhecer</span>
-                                   <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                               </a>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </section>
-          
-           <!-- Section 2: Proteção Patrimonial -->
-           <section class="mb-20">
-               <div class="section-header-premium flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
-                   <div>
-                       <div class="flex items-center gap-2 mb-2">
-                           <div class="w-1.5 h-8 bg-gradient-to-b from-amber-500 to-yellow-600 rounded-full"></div>
-                           <h2 class="text-3xl md:text-4xl font-bold text-navy-800">Proteção Patrimonial</h2>
-                       </div>
-                       <p class="text-gray-500 mt-2 max-w-2xl text-base">Proteja e valorize seus ativos imobiliários com metodologia técnica especializada.</p>
-                   </div>
-                   <div class="mt-4 md:mt-0">
-                       <span class="inline-flex items-center px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-50 to-yellow-50 text-amber-700 text-sm font-bold border border-amber-200 shadow-sm">
-                           <i data-lucide="shield" class="w-4 h-4 mr-2"></i>
-                           Formação Técnica
-                       </span>
-                   </div>
-               </div>
-              
-               <div class="flex justify-center">
-                   <div class="w-full max-w-2xl">
-                       <div class="card-container">
-                           <div class="card">
-                               <div class="card-image">
-                                   <img src="images/vistoriadorpro.png" alt="Vistoriador PRO" class="image-placeholder" onerror="this.src='https://placehold.co/600x400/1a2c4a/ffffff?text=Vistoriador+PRO'">
-                                   <div class="image-overlay"></div>
-                               </div>
-                               <div class="card-content">
-                                   <div class="mb-2">
-                                       <span class="badge-premium bg-amber-50 text-amber-700 border-amber-200">
-                                           <i data-lucide="home" class="w-3.5 h-3.5"></i>
-                                           Especializado
-                                       </span>
-                                   </div>
-                                   <h3 class="card-title">Vistoriador PRO</h3>
-                                   <p class="card-description">Formação técnica completa para proteger e valorizar patrimônio imobiliário. Aprenda a identificar, avaliar e documentar condições de imóveis com precisão técnica para evitar prejuízos e maximizar investimentos através de laudos de alta credibilidade.</p>
-                                   <a href="https://kiwify.app/DoUTdmx" target="_blank" class="btn-premium mt-2 w-full text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all group">
-                                       <span>Acessar formação</span>
-                                       <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                                   </a>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </section>
-          
-           <!-- Section 3: Consolidação Patrimonial -->
-           <section class="mb-20">
-               <div class="section-header-premium flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
-                   <div>
-                       <div class="flex items-center gap-2 mb-2">
-                           <div class="w-1.5 h-8 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full"></div>
-                           <h2 class="text-3xl md:text-4xl font-bold text-navy-800">Consolidação Patrimonial</h2>
-                       </div>
-                       <p class="text-gray-500 mt-2 max-w-2xl text-base">Estratégias de alto padrão para consolidação e crescimento de patrimônio através de imóveis premium.</p>
-                   </div>
-                   <div class="mt-4 md:mt-0">
-                       <span class="inline-flex items-center px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-50 to-sky-50 text-blue-700 text-sm font-bold border border-blue-200 shadow-sm">
-                           <i data-lucide="building" class="w-4 h-4 mr-2"></i>
-                           Alto Padrão
-                       </span>
-                   </div>
-               </div>
-              
-               <div class="flex justify-center">
-                   <div class="w-full max-w-2xl">
-                       <div class="card-container">
-                           <div class="card">
-                               <div class="card-image">
-                                   <img src="images/consultoria.png" alt="Consultoria Imobiliária Premium" class="image-placeholder" onerror="this.src='https://placehold.co/600x400/1a2c4a/ffffff?text=Consultoria+Imobiliária+Premium'">
-                                   <div class="image-overlay"></div>
-                               </div>
-                               <div class="card-content">
-                                   <div class="mb-2 flex flex-wrap gap-2">
-                                       <span class="badge-premium bg-gold-50 text-gold-700 border-gold-200">
-                                           <i data-lucide="star" class="w-3.5 h-3.5"></i>
-                                           Exclusivo
-                                       </span>
-                                       <span class="badge-premium bg-navy-50 text-navy-700 border-navy-200">
-                                           <i data-lucide="crown" class="w-3.5 h-3.5"></i>
-                                           Cliente VIP
-                                       </span>
-                                   </div>
-                                   <h3 class="card-title">Consultoria Imobiliária Premium</h3>
-                                   <p class="card-description">Imóveis de alto padrão com visão estratégica. Acesso exclusivo a oportunidades imobiliárias selecionadas, análise de mercado especializada e gestão patrimonial personalizada para clientes de alto patrimônio.</p>
-                                   <a href="https://wa.me/5521990650767?text=Olá,%20gostaria%20de%20informações%20sobre%20a%20Consultoria%20Imobiliária%20Premium" target="_blank" class="btn-whatsapp-premium mt-2 w-full text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all group">
-                                       <i data-lucide="message-circle" class="w-5 h-5"></i>
-                                       <span>Falar no WhatsApp</span>
-                                   </a>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </section>
-          
-           <!-- Footer Note Premium -->
-           <div class="mt-16 pt-10 border-t border-gray-200">
-               <div class="max-w-3xl mx-auto text-center">
-                   <div class="flex justify-center mb-4">
-                       <div class="w-12 h-12 bg-gradient-to-br from-gold-100 to-gold-50 rounded-full flex items-center justify-center">
-                           <i data-lucide="lock" class="w-6 h-6 text-gold-600"></i>
-                       </div>
-                   </div>
-                   <p class="text-gray-500 text-sm md:text-base leading-relaxed">
-                       Todas as soluções apresentadas são baseadas em metodologias validadas e desenvolvidas por especialistas de mercado.
-                       Os resultados podem variar de acordo com a dedicação e aplicação dos métodos.
-                   </p>
-                   <div class="flex justify-center gap-6 mt-6">
-                       <span class="text-xs text-gray-400 flex items-center gap-1"><i data-lucide="check-circle" class="w-3 h-3 text-green-500"></i> Metodologia certificada</span>
-                       <span class="text-xs text-gray-400 flex items-center gap-1"><i data-lucide="shield" class="w-3 h-3 text-navy-500"></i> Proteção de dados</span>
-                       <span class="text-xs text-gray-400 flex items-center gap-1"><i data-lucide="award" class="w-3 h-3 text-gold-500"></i> Excelência garantida</span>
-                   </div>
-               </div>
-           </div>
-       </div>
-   </main>
+    <main class="py-10 px-5 md:px-8 lg:px-12">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- SEÇÃO: Consultoria Imobiliária Gratuita com Imagem 640x320px -->
+            <section class="mb-20">
+                <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-navy-900 via-navy-800 to-indigo-900 shadow-2xl consultoria-glow">
+                    <!-- Elementos decorativos -->
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+                    <div class="absolute bottom-0 left-0 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl"></div>
+                    
+                    <div class="relative p-8 md:p-12 lg:p-14 text-white">
+                        <div class="flex flex-col lg:flex-row items-center gap-10">
+                            
+                            <!-- Lado Esquerdo: Conteúdo textual -->
+                            <div class="flex-1 text-center lg:text-left">
+                                <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-medium mb-6">
+                                    <i data-lucide="gift" class="w-4 h-4"></i>
+                                    <span>Exclusivo • Sem custo</span>
+                                </div>
+                                <h2 class="text-4xl md:text-5xl lg:text-6xl font-black mb-5 tracking-tight">
+                                    Consultoria <br>
+                                    <span class="bg-gradient-to-r from-amber-300 to-yellow-200 bg-clip-text text-transparent">Imobiliária Gratuita</span>
+                                </h2>
+                                <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+                                    Análise estratégica completa para destravar o potencial do seu imóvel ou acelerar seus negócios como corretor parceiro.
+                                </p>
+                                <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                                    <div class="flex items-center gap-2 bg-white/10 rounded-full px-4 py-2">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-emerald-300"></i>
+                                        <span class="text-sm">Diagnóstico personalizado</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 bg-white/10 rounded-full px-4 py-2">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-emerald-300"></i>
+                                        <span class="text-sm">Plano de ação sem compromisso</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 bg-white/10 rounded-full px-4 py-2">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-emerald-300"></i>
+                                        <span class="text-sm">Visibilidade para seu anúncio</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Lado Direito: Imagem 640x320 + Formulário de contato -->
+                            <div class="flex-1 w-full max-w-md">
+                                <!-- Imagem 640x320px -->
+                                <div class="rounded-2xl overflow-hidden shadow-xl mb-5 border-2 border-white/20">
+                                    <img src="https://placehold.co/640x320/1e3a5f/white?text=Consultoria+Imobiliária+Gratuita" 
+                                         alt="Consultoria Imobiliária Gratuita - Rodrigo Assis" 
+                                         class="w-full h-auto object-cover"
+                                         style="aspect-ratio: 640/320;">
+                                </div>
+                                
+                                <!-- Card de agendamento -->
+                                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                                    <div class="text-center mb-4">
+                                        <div class="w-14 h-14 mx-auto rounded-full bg-amber-500/20 flex items-center justify-center mb-2">
+                                            <i data-lucide="calendar" class="w-7 h-7 text-amber-300"></i>
+                                        </div>
+                                        <h3 class="text-xl font-bold text-white">Agende sua consultoria</h3>
+                                        <p class="text-white/70 text-sm">Proprietários • Investidores • Corretores</p>
+                                    </div>
+                                    <a href="https://wa.me/5521990650767?text=Olá,%20gostaria%20de%20agendar%20minha%20consultoria%20imobiliária%20gratuita%20para%20anunciar%20meu%20imóvel/serviço" 
+                                       target="_blank" 
+                                       class="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg transform hover:scale-[1.02]">
+                                        <i data-lucide="whatsapp" class="w-5 h-5"></i>
+                                        <span>Quero minha consultoria gratuita</span>
+                                    </a>
+                                    <p class="text-xs text-white/50 text-center mt-3">
+                                        * Atendimento rápido. Vagas limitadas por semana.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Selo de confiança -->
+                        <div class="flex flex-wrap justify-center lg:justify-start gap-6 mt-10 pt-6 border-t border-white/10">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="users" class="w-4 h-4 text-amber-300"></i>
+                                <span class="text-sm text-white/70">+230 imóveis assessorados</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="award" class="w-4 h-4 text-amber-300"></i>
+                                <span class="text-sm text-white/70">Método validado</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="trending-up" class="w-4 h-4 text-amber-300"></i>
+                                <span class="text-sm text-white/70">Vendas aceleradas em até 45 dias</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Seção Para Proprietários e Investidores -->
+            <section class="mb-24">
+                <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
+                    <div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-3xl">🔑</span>
+                            <span class="text-xs font-bold uppercase tracking-wider bg-blue-100 text-blue-700 px-3 py-1.5 rounded-full">desbloqueie valor</span>
+                        </div>
+                        <h2 class="text-4xl md:text-5xl font-black tracking-tight text-gray-900">Para <span class="bg-gradient-to-r from-blue-700 to-navy-700 bg-clip-text text-transparent">Proprietários</span> e Investidores</h2>
+                        <p class="text-gray-500 max-w-2xl mt-3 text-lg">Destravamos a venda do seu imóvel com inteligência jurídica, laudos técnicos e estratégias de aceleração de mercado.</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-blue-700">R</div>
+                            <div class="w-8 h-8 rounded-full bg-navy-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-navy-700">+</div>
+                        </div>
+                        <span class="text-sm text-gray-500 font-medium">3 pilares exclusivos</span>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card-modern group relative overflow-hidden">
+                        <div class="p-7 flex flex-col h-full">
+                            <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center mb-5">
+                                <i data-lucide="timer" class="w-7 h-7 text-blue-600"></i>
+                            </div>
+                            <div class="mb-3">
+                                <span class="badge-modern inline-flex items-center gap-1 bg-blue-50 text-blue-700 rounded-full px-3 py-1 text-xs font-bold border border-blue-200">
+                                    <i data-lucide="zap" class="w-3 h-3"></i> liquidez acelerada
+                                </span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Método 360</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">Investimento estratégico em jurídico, laudos e marketing para vender seu imóvel de alto padrão em até 45 dias com segurança e máxima valorização.</p>
+                            <a href="https://wa.me/5521990650767?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20Método%20360" target="_blank" class="mt-auto w-full bg-gradient-to-r from-navy-800 to-navy-700 hover:from-navy-900 hover:to-navy-800 text-white font-semibold py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 transition-all btn-gradient">
+                                <span>Falar com especialista</span>
+                                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="card-modern group">
+                        <div class="p-7 flex flex-col h-full">
+                            <div class="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center mb-5">
+                                <i data-lucide="shield-alert" class="w-7 h-7 text-red-500"></i>
+                            </div>
+                            <div class="mb-3">
+                                <span class="badge-modern inline-flex items-center gap-1 bg-red-50 text-red-700 rounded-full px-3 py-1 text-xs font-bold border border-red-200">
+                                    <i data-lucide="file-check" class="w-3 h-3"></i> regularização express
+                                </span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Destravamento Tributário</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">Venda travada por certidões negativas ou pendências de CPF/CNPJ? Nossa consultoria especializada limpa o caminho e viabiliza a transação.</p>
+                            <a href="https://wa.me/5521990650767?text=Olá,%20preciso%20de%20ajuda%20com%20destravamento%20tributário" target="_blank" class="mt-auto w-full bg-gradient-to-r from-navy-800 to-navy-700 hover:from-navy-900 hover:to-navy-800 text-white font-semibold py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 transition-all">
+                                <span>Resolver pendências</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="card-modern group">
+                        <div class="p-7 flex flex-col h-full">
+                            <div class="w-14 h-14 rounded-2xl bg-amber-50 flex items-center justify-center mb-5">
+                                <i data-lucide="building" class="w-7 h-7 text-amber-600"></i>
+                            </div>
+                            <div class="mb-3">
+                                <span class="badge-modern inline-flex items-center gap-1 bg-amber-50 text-amber-700 rounded-full px-3 py-1 text-xs font-bold border border-amber-200">
+                                    <i data-lucide="refresh-cw" class="w-3 h-3"></i> turnaround imobiliário
+                                </span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Takeover de Estoque Parado</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">Transformamos imóveis estagnados em ativos rentáveis: reestruturação para venda ou adequação para locação de alto retorno.</p>
+                            <a href="https://wa.me/5521990650767?text=Olá,%20gostaria%20de%20falar%20sobre%20o%20Takeover%20de%20imóveis" target="_blank" class="mt-auto w-full bg-gradient-to-r from-navy-800 to-navy-700 hover:from-navy-900 hover:to-navy-800 text-white font-semibold py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 transition-all">
+                                <span>Rentabilizar imóvel</span>
+                                <i data-lucide="trending-up" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Seção Hub para Corretores (Parceiros) -->
+            <section class="mb-24">
+                <div class="text-center mb-12">
+                    <div class="inline-flex items-center gap-2 bg-amber-50 px-5 py-1.5 rounded-full border border-amber-200 mb-4">
+                        <i data-lucide="handshake" class="w-4 h-4 text-amber-600"></i>
+                        <span class="text-xs font-bold uppercase tracking-wide text-amber-700">networking estratégico</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tight">Hub para <span class="bg-gradient-to-r from-amber-700 to-yellow-700 bg-clip-text text-transparent">Corretores</span></h2>
+                    <p class="text-gray-500 max-w-2xl mx-auto mt-3">Use nossa estrutura de vistorias, jurídico e marketing para parar de perder comissões e alavancar seus negócios.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="card-modern border-l-8 border-l-navy-600 overflow-hidden">
+                        <div class="p-7 flex flex-col h-full">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <div class="w-12 h-12 rounded-xl bg-navy-100 flex items-center justify-center mb-4">
+                                        <i data-lucide="users" class="w-6 h-6 text-navy-700"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-extrabold text-gray-800 mb-2">Parceria Ecossistema 360</h3>
+                                </div>
+                                <span class="bg-emerald-100 text-emerald-700 text-[11px] font-bold px-3 py-1.5 rounded-full">comissões protegidas</span>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed mb-6">Tem o cliente mas esbarrou em problemas técnicos, laudos ou documentação? Aplique para usar nosso ecossistema e destrave sua comissão com suporte completo.</p>
+                            <ul class="space-y-3 mb-7 text-sm text-gray-600">
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i> <span>Laudos técnicos e vistoria especializada</span></li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i> <span>Assessoria jurídica para destravar documentos</span></li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i> <span>Estratégias de marketing para acelerar venda</span></li>
+                            </ul>
+                            <a href="https://wa.me/5521990650767?text=Olá,%20sou%20corretor%20e%20quero%20ser%20um%20parceiro%20do%20Ecossistema" target="_blank" class="mt-auto w-full bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-700 hover:to-orange-600 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md">
+                                <i data-lucide="briefcase" class="w-4 h-4"></i>
+                                <span>Aplicar para parceria</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="card-modern overflow-hidden">
+                        <div class="img-zoom h-52 w-full bg-gray-100">
+                            <img src="https://placehold.co/800x500/1e293b/white?text=Vistoriador+PRO" alt="Vistoriador PRO" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-7">
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="inline-flex items-center gap-1 bg-yellow-50 text-yellow-700 rounded-full px-3 py-1 text-xs font-bold border border-yellow-200">
+                                    <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i> certificação técnica
+                                </span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Vistoriador PRO</h3>
+                            <p class="text-gray-600 mb-6">Formação completa para realizar vistorias de alto padrão, blindar contratos de locação e criar uma nova fonte de renda no mercado imobiliário.</p>
+                            <a href="https://kiwify.app/DoUTdmx" target="_blank" class="inline-flex w-full bg-gradient-to-r from-navy-800 to-navy-700 text-white font-bold py-3.5 rounded-xl items-center justify-center gap-2 transition-all hover:shadow-lg">
+                                <span>Acessar formação</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Seção Domínio Digital -->
+            <section class="mb-24">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
+                    <div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-3xl">🚀</span>
+                            <span class="text-xs font-bold uppercase tracking-wider bg-green-100 text-green-700 px-3 py-1.5 rounded-full">escala digital</span>
+                        </div>
+                        <h2 class="text-4xl md:text-5xl font-black tracking-tight">Domínio <span class="bg-gradient-to-r from-green-700 to-teal-700 bg-clip-text text-transparent">Digital</span></h2>
+                        <p class="text-gray-500 max-w-2xl text-lg mt-2">Infoprodutos com alto valor agregado para criar fluxos de renda consistentes no ambiente digital.</p>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm px-5 py-2 rounded-full border border-green-200 shadow-sm">
+                        <span class="flex items-center gap-1 text-green-700 font-semibold text-sm"><i data-lucide="sparkles" class="w-4 h-4"></i> 3 soluções premium</span>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card-modern group">
+                        <div class="img-zoom h-48 w-full">
+                            <img src="https://placehold.co/800x500/0f172a/white?text=Codigo+Trafico+Real" alt="Código do Tráfego Real" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex flex-col h-full">
+                            <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 rounded-full px-3 py-1 text-xs font-bold w-fit mb-3">alto ROI</span>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Código do Tráfego Real</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-5">Método científico para otimização de tráfego pago com ROI mensurável.</p>
+                            <a href="https://kiwify.app/oYmqCtv" target="_blank" class="mt-auto w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2">Acessar</a>
+                        </div>
+                    </div>
+                    <div class="card-modern group">
+                        <div class="img-zoom h-48 w-full">
+                            <img src="https://placehold.co/800x500/1e1b4b/white?text=Sistema+Milionario" alt="Sistema Milionário" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex flex-col h-full">
+                            <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 rounded-full px-3 py-1 text-xs font-bold w-fit mb-3">estrutura completa</span>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Sistema Milionário</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-5">Roadmap para construir um negócio digital do zero.</p>
+                            <a href="https://kiwify.app/xOLgXNT?afid=j1q39KnQ" target="_blank" class="mt-auto w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2">Ver método</a>
+                        </div>
+                    </div>
+                    <div class="card-modern group">
+                        <div class="img-zoom h-48 w-full">
+                            <img src="https://placehold.co/800x500/4c1d95/white?text=Story+Cash" alt="StoryCash" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex flex-col h-full">
+                            <span class="inline-flex items-center gap-1.5 bg-purple-50 text-purple-700 rounded-full px-3 py-1 text-xs font-bold w-fit mb-3">storytelling</span>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">StoryCash</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-5">Monetização de redes sociais com storytelling.</p>
+                            <a href="https://kiwify.app/m5OA3mN?afid=Ov8kxfbw" target="_blank" class="mt-auto w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2">Conhecer</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Rodapé -->
+            <div class="mt-16 pt-10 border-t border-gray-200/70 text-center">
+                <div class="flex justify-center gap-3 text-gray-400 mb-5">
+                    <i data-lucide="key" class="w-5 h-5"></i>
+                    <i data-lucide="building-2" class="w-5 h-5"></i>
+                    <i data-lucide="trending-up" class="w-5 h-5"></i>
+                </div>
+                <p class="text-gray-500 text-sm max-w-2xl mx-auto">Todas as soluções apresentadas são baseadas em metodologias validadas e desenvolvidas por especialistas do mercado imobiliário e digital.</p>
+                <p class="text-gray-400 text-xs mt-6">© 2025 · Ecossistema Chave Mestra — Rodrigo Assis · Aceleração e blindagem patrimonial</p>
+            </div>
+        </div>
+    </main>
 
-
-   <!-- Initialize Lucide Icons -->
-   <script>
-       document.addEventListener('DOMContentLoaded', function() {
-           // Inicializar ícones Lucide
-           if (typeof lucide !== 'undefined' && lucide.createIcons) {
-               lucide.createIcons();
-           }
-           
-           // Adicionar efeito de toque para mobile
-           const cards = document.querySelectorAll('.card');
-          
-           cards.forEach(card => {
-               card.addEventListener('touchstart', function() {
-                   this.classList.add('touch-active');
-               });
-              
-               card.addEventListener('touchend', function() {
-                   this.classList.remove('touch-active');
-               });
-               
-               card.addEventListener('touchcancel', function() {
-                   this.classList.remove('touch-active');
-               });
-           });
-           
-           // Garantir que todos os links externos abram com segurança
-           const externalLinks = document.querySelectorAll('a[href^="https://"]');
-           externalLinks.forEach(link => {
-               if (!link.getAttribute('rel')) {
-                   link.setAttribute('rel', 'noopener noreferrer');
-               }
-           });
-       });
-   </script>
+    <script>
+        if (typeof lucide !== 'undefined' && lucide.createIcons) {
+            lucide.createIcons();
+        } else {
+            window.addEventListener('load', () => {
+                if (window.lucide) window.lucide.createIcons();
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card-modern');
+            cards.forEach(card => {
+                card.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                card.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
