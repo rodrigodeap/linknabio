@@ -54,6 +54,9 @@
             transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             border: 1px solid rgba(255,255,255,0.6);
             box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .card-modern:hover {
@@ -89,7 +92,6 @@
             box-shadow: 0 12px 22px -8px rgba(7, 94, 84, 0.3);
         }
 
-        /* Botões melhorados para o Hub Ecossistema */
         .btn-hub-primary {
             background: linear-gradient(105deg, #d97706 0%, #ea580c 100%);
             transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
@@ -156,27 +158,6 @@
             left: 100%;
         }
 
-        .btn-hub-outline {
-            background: transparent;
-            border: 2px solid #1e3a8a;
-            color: #1e3a8a;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-hub-outline:hover {
-            background: linear-gradient(105deg, #1e3a8a 0%, #1e40af 100%);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -5px rgba(30, 58, 138, 0.3);
-            border-color: transparent;
-        }
-
-        .btn-hub-outline:active {
-            transform: translateY(0);
-        }
-
         .img-zoom {
             overflow: hidden;
             border-radius: 24px;
@@ -217,18 +198,21 @@
             background: radial-gradient(circle at 0% 20%, rgba(65,111,185,0.08) 0%, rgba(255,255,255,0) 70%);
         }
 
-        /* Efeito de badge pulsante */
         .pulse-badge {
             animation: pulse-glow 2s infinite;
         }
         
-        .img-fallback {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        /* Garantia de altura consistente para cards */
+        .card-content-fixed {
+            flex: 1;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #94a3b8;
-            font-size: 14px;
+            flex-direction: column;
+        }
+        
+        .btn-digital {
+            margin-top: auto;
+            width: 100%;
+            transition: all 0.25s ease;
         }
     </style>
 
@@ -452,7 +436,7 @@
                 </div>
             </section>
             
-            <!-- Seção Hub para Corretores (Parceiros) - BOTÕES MELHORADOS -->
+            <!-- Seção Hub para Corretores (Parceiros) -->
             <section class="mb-24">
                 <div class="text-center mb-12">
                     <div class="inline-flex items-center gap-2 bg-amber-50 px-5 py-1.5 rounded-full border border-amber-200 mb-4 pulse-badge">
@@ -464,7 +448,6 @@
                 </div>
                 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                    <!-- Card Parceria Ecossistema 360 com botão premium -->
                     <div class="card-modern border-l-8 border-l-amber-500 overflow-hidden group">
                         <div class="p-7 flex flex-col h-full">
                             <div class="flex items-start justify-between">
@@ -482,7 +465,6 @@
                                 <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i> <span>Assessoria jurídica para destravar documentos</span></li>
                                 <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i> <span>Estratégias de marketing para acelerar venda</span></li>
                             </ul>
-                            <!-- Botão melhorado com efeito shimmer e animação -->
                             <a href="https://wa.me/5521990650767?text=Olá,%20sou%20corretor%20e%20quero%20ser%20um%20parceiro%20do%20Ecossistema" 
                                target="_blank" 
                                class="btn-hub-primary mt-auto w-full text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition-all group relative">
@@ -493,7 +475,6 @@
                         </div>
                     </div>
                     
-                    <!-- Card Vistoriador PRO com botão melhorado -->
                     <div class="card-modern overflow-hidden group">
                         <div class="img-zoom h-52 w-full bg-gray-100">
                             <img src="images/vistoriadorpro.png" 
@@ -512,7 +493,6 @@
                             </div>
                             <h3 class="text-2xl font-bold text-gray-800 mb-2">Vistoriador PRO</h3>
                             <p class="text-gray-600 mb-6 leading-relaxed">Formação completa para realizar vistorias de alto padrão, blindar contratos de locação e criar uma nova fonte de renda no mercado imobiliário.</p>
-                            <!-- Botão melhorado com efeito secondary -->
                             <a href="https://kiwify.app/DoUTdmx" 
                                target="_blank" 
                                class="btn-hub-secondary inline-flex w-full text-white font-bold py-4 rounded-xl items-center justify-center gap-3 transition-all group">
@@ -520,7 +500,6 @@
                                 <span class="text-base">Acessar formação completa</span>
                                 <i data-lucide="external-link" class="w-5 h-5 transition-transform group-hover:translate-x-1"></i>
                             </a>
-                            <!-- Badge de bônus -->
                             <div class="mt-4 text-center">
                                 <span class="inline-flex items-center gap-1 text-xs text-amber-600 bg-amber-50 px-3 py-1 rounded-full">
                                     <i data-lucide="gift" class="w-3 h-3"></i>
@@ -531,7 +510,6 @@
                     </div>
                 </div>
                 
-                <!-- Banner adicional de chamada para corretores -->
                 <div class="mt-10 max-w-5xl mx-auto">
                     <div class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-5 border border-amber-200 flex flex-col sm:flex-row items-center justify-between gap-4">
                         <div class="flex items-center gap-3">
@@ -545,7 +523,7 @@
                         </div>
                         <a href="https://wa.me/5521990650767?text=Olá,%20sou%20corretor%20e%20quero%20me%20tornar%20parceiro%20Chave%20Mestra" 
                            target="_blank"
-                           class="btn-hub-outline px-6 py-2.5 rounded-xl font-semibold flex items-center gap-2 text-sm">
+                           class="px-6 py-2.5 rounded-xl font-semibold flex items-center gap-2 text-sm bg-white border border-amber-300 hover:bg-amber-50 transition-all">
                             <i data-lucide="headphones" class="w-4 h-4"></i>
                             Falar com suporte
                         </a>
@@ -553,7 +531,7 @@
                 </div>
             </section>
             
-            <!-- Seção Domínio Digital -->
+            <!-- Seção Domínio Digital - Botões corrigidos e alinhados -->
             <section class="mb-24">
                 <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
                     <div>
@@ -570,48 +548,66 @@
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card Código do Tráfego Real -->
                     <div class="card-modern group">
-                        <div class="img-zoom h-48 w-full bg-gray-100">
+                        <div class="img-zoom h-52 w-full bg-gray-100">
                             <img src="images/CAPA_TRAFEGO_REAL.png" 
                                  alt="Código do Tráfego Real" 
                                  class="w-full h-full object-cover"
                                  onerror="this.onerror=null; this.src='https://placehold.co/800x500/0f172a/white?text=Codigo+Trafico+Real';">
                         </div>
                         <div class="p-6 flex flex-col h-full">
-                            <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 rounded-full px-3 py-1 text-xs font-bold w-fit mb-3">alto ROI</span>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 rounded-full px-3 py-1 text-xs font-bold">alto ROI</span>
+                            </div>
                             <h3 class="text-xl font-bold text-gray-800 mb-2">Código do Tráfego Real</h3>
-                            <p class="text-gray-500 text-sm leading-relaxed mb-5">Método científico para otimização de tráfego pago com ROI mensurável.</p>
-                            <a href="https://kiwify.app/oYmqCtv" target="_blank" class="mt-auto w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2">Acessar</a>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-5 flex-1">Pare de desperdiçar dinheiro com campanhas mal estruturadas. Método científico para otimização de tráfego pago com ROI mensurável.</p>
+                            <a href="https://kiwify.app/oYmqCtv" target="_blank" class="btn-digital w-full bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md group/btn">
+                                <span>Acessar agora</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"></i>
+                            </a>
                         </div>
                     </div>
                     
+                    <!-- Card Sistema Milionário -->
                     <div class="card-modern group">
-                        <div class="img-zoom h-48 w-full bg-gray-100">
+                        <div class="img-zoom h-52 w-full bg-gray-100">
                             <img src="images/sistemamilionario.jpg" 
                                  alt="Sistema Milionário" 
                                  class="w-full h-full object-cover"
                                  onerror="this.onerror=null; this.src='https://placehold.co/800x500/1e1b4b/white?text=Sistema+Milionario';">
                         </div>
                         <div class="p-6 flex flex-col h-full">
-                            <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 rounded-full px-3 py-1 text-xs font-bold w-fit mb-3">estrutura completa</span>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 rounded-full px-3 py-1 text-xs font-bold">estrutura completa</span>
+                            </div>
                             <h3 class="text-xl font-bold text-gray-800 mb-2">Sistema Milionário</h3>
-                            <p class="text-gray-500 text-sm leading-relaxed mb-5">Roadmap para construir um negócio digital do zero.</p>
-                            <a href="https://kiwify.app/xOLgXNT?afid=j1q39KnQ" target="_blank" class="mt-auto w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2">Ver método</a>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-5 flex-1">Estrutura para iniciar no digital do zero. Roadmap completo com etapas claras para construir um negócio digital do absoluto zero.</p>
+                            <a href="https://kiwify.app/xOLgXNT?afid=j1q39KnQ" target="_blank" class="btn-digital w-full bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md group/btn">
+                                <span>Ver método</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"></i>
+                            </a>
                         </div>
                     </div>
                     
+                    <!-- Card StoryCash -->
                     <div class="card-modern group">
-                        <div class="img-zoom h-48 w-full bg-gray-100">
+                        <div class="img-zoom h-52 w-full bg-gray-100">
                             <img src="images/storycash.png" 
                                  alt="StoryCash" 
                                  class="w-full h-full object-cover"
                                  onerror="this.onerror=null; this.src='https://placehold.co/800x500/4c1d95/white?text=Story+Cash';">
                         </div>
                         <div class="p-6 flex flex-col h-full">
-                            <span class="inline-flex items-center gap-1.5 bg-purple-50 text-purple-700 rounded-full px-3 py-1 text-xs font-bold w-fit mb-3">storytelling</span>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="inline-flex items-center gap-1.5 bg-purple-50 text-purple-700 rounded-full px-3 py-1 text-xs font-bold">storytelling</span>
+                            </div>
                             <h3 class="text-xl font-bold text-gray-800 mb-2">StoryCash</h3>
-                            <p class="text-gray-500 text-sm leading-relaxed mb-5">Monetização de redes sociais com storytelling.</p>
-                            <a href="https://kiwify.app/m5OA3mN?afid=Ov8kxfbw" target="_blank" class="mt-auto w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2">Conhecer</a>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-5 flex-1">Transforme audiência em receita estratégica. Monetização inteligente de redes sociais através de storytelling e funis otimizados.</p>
+                            <a href="https://kiwify.app/m5OA3mN?afid=Ov8kxfbw" target="_blank" class="btn-digital w-full bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md group/btn">
+                                <span>Conhecer</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
