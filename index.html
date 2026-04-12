@@ -118,6 +118,16 @@
         .consultoria-glow {
             background: radial-gradient(circle at 0% 20%, rgba(65,111,185,0.08) 0%, rgba(255,255,255,0) 70%);
         }
+        
+        /* fallback para imagens */
+        .img-fallback {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 14px;
+        }
     </style>
 
     <script>
@@ -181,7 +191,6 @@
             <!-- SEÇÃO: Consultoria Imobiliária Gratuita com Imagem 640x320px -->
             <section class="mb-20">
                 <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-navy-900 via-navy-800 to-indigo-900 shadow-2xl consultoria-glow">
-                    <!-- Elementos decorativos -->
                     <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
                     <div class="absolute bottom-0 left-0 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl"></div>
                     
@@ -217,14 +226,15 @@
                                 </div>
                             </div>
                             
-                            <!-- Lado Direito: Imagem 640x320 + Formulário de contato -->
+                            <!-- Lado Direito: Imagem consultoria.png 640x320 + formulário -->
                             <div class="flex-1 w-full max-w-md">
-                                <!-- Imagem 640x320px -->
+                                <!-- Imagem consultoria.png (640x320) -->
                                 <div class="rounded-2xl overflow-hidden shadow-xl mb-5 border-2 border-white/20">
-                                    <img src="https://placehold.co/640x320/1e3a5f/white?text=Consultoria+Imobiliária+Gratuita" 
+                                    <img src="images/consultoria.png" 
                                          alt="Consultoria Imobiliária Gratuita - Rodrigo Assis" 
                                          class="w-full h-auto object-cover"
-                                         style="aspect-ratio: 640/320;">
+                                         style="aspect-ratio: 640/320;"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/640x320/1e3a5f/white?text=Consultoria+Premium'; this.style.backgroundColor='#1e3a5f';">
                                 </div>
                                 
                                 <!-- Card de agendamento -->
@@ -384,9 +394,13 @@
                         </div>
                     </div>
                     
+                    <!-- Card Vistoriador PRO com imagem vistoriadorpro.png -->
                     <div class="card-modern overflow-hidden">
                         <div class="img-zoom h-52 w-full bg-gray-100">
-                            <img src="https://placehold.co/800x500/1e293b/white?text=Vistoriador+PRO" alt="Vistoriador PRO" class="w-full h-full object-cover">
+                            <img src="images/vistoriadorpro.png" 
+                                 alt="Vistoriador PRO" 
+                                 class="w-full h-full object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/800x500/1e293b/white?text=Vistoriador+PRO';">
                         </div>
                         <div class="p-7">
                             <div class="flex flex-wrap gap-2 mb-3">
@@ -405,7 +419,7 @@
                 </div>
             </section>
             
-            <!-- Seção Domínio Digital -->
+            <!-- Seção Domínio Digital com imagens reais -->
             <section class="mb-24">
                 <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
                     <div>
@@ -422,9 +436,13 @@
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card Código do Tráfego Real -->
                     <div class="card-modern group">
-                        <div class="img-zoom h-48 w-full">
-                            <img src="https://placehold.co/800x500/0f172a/white?text=Codigo+Trafico+Real" alt="Código do Tráfego Real" class="w-full h-full object-cover">
+                        <div class="img-zoom h-48 w-full bg-gray-100">
+                            <img src="images/CAPA_TRAFEGO_REAL.png" 
+                                 alt="Código do Tráfego Real" 
+                                 class="w-full h-full object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/800x500/0f172a/white?text=Codigo+Trafico+Real';">
                         </div>
                         <div class="p-6 flex flex-col h-full">
                             <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 rounded-full px-3 py-1 text-xs font-bold w-fit mb-3">alto ROI</span>
@@ -433,9 +451,14 @@
                             <a href="https://kiwify.app/oYmqCtv" target="_blank" class="mt-auto w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2">Acessar</a>
                         </div>
                     </div>
+                    
+                    <!-- Card Sistema Milionário -->
                     <div class="card-modern group">
-                        <div class="img-zoom h-48 w-full">
-                            <img src="https://placehold.co/800x500/1e1b4b/white?text=Sistema+Milionario" alt="Sistema Milionário" class="w-full h-full object-cover">
+                        <div class="img-zoom h-48 w-full bg-gray-100">
+                            <img src="images/sistemamilionario.jpg" 
+                                 alt="Sistema Milionário" 
+                                 class="w-full h-full object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/800x500/1e1b4b/white?text=Sistema+Milionario';">
                         </div>
                         <div class="p-6 flex flex-col h-full">
                             <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 rounded-full px-3 py-1 text-xs font-bold w-fit mb-3">estrutura completa</span>
@@ -444,9 +467,14 @@
                             <a href="https://kiwify.app/xOLgXNT?afid=j1q39KnQ" target="_blank" class="mt-auto w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2">Ver método</a>
                         </div>
                     </div>
+                    
+                    <!-- Card StoryCash -->
                     <div class="card-modern group">
-                        <div class="img-zoom h-48 w-full">
-                            <img src="https://placehold.co/800x500/4c1d95/white?text=Story+Cash" alt="StoryCash" class="w-full h-full object-cover">
+                        <div class="img-zoom h-48 w-full bg-gray-100">
+                            <img src="images/storycash.png" 
+                                 alt="StoryCash" 
+                                 class="w-full h-full object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/800x500/4c1d95/white?text=Story+Cash';">
                         </div>
                         <div class="p-6 flex flex-col h-full">
                             <span class="inline-flex items-center gap-1.5 bg-purple-50 text-purple-700 rounded-full px-3 py-1 text-xs font-bold w-fit mb-3">storytelling</span>
